@@ -1,0 +1,15 @@
+#Password=<< Existing password/certificate removed on export >>
+#
+#Mon Mar 24 01:30:08 UTC 2025
+sap.applicationdevelopment.actions.enabled=true
+User=SBPA_1
+sap.processautomation.enabled=true
+product.name=SAP S/4HANA Cloud
+WebIDEEnabled=true
+URL=https\://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v\=0002
+Name=workshop_outbound_delivery_api
+WebIDEUsage=odata_gen
+Type=HTTP
+HTML5.DynamicDestination=true
+Authentication=BasicAuthentication
+ProxyType=Internet

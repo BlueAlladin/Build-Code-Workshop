@@ -482,8 +482,24 @@ Directly Run this in task center, it will help handle build and deploy
 It will let you input user and password for cf logon, and also target and space
 
 ### 4 Add Apps to Workzone
-
+Content Manager Create Contents, Group
+![img_32.png](img_32.png)
+Add contents into group
+![img_33.png](img_33.png)
+Add contents into everyone
+![img_34.png](img_34.png)
+Create a site, and view it
+![img_35.png](img_35.png)
 # Appendix - Related Tutorials
 ## ABAP Cloud Tutorial
 ### https://github.com/amritansh-sap/sap-build-abap-dev-workshop
- 
+## SAP Build Code_ Fiori Application – Fiori Element Project
+### https://developers.sap.com/group.fiori-tools-lrop.html
+## SAP Build Code – UI5 Free Style Project
+### https://community.sap.com/t5/technology-blogs-by-sap/ui5-freestyle-development-in-sap-build-code-with-joule/ba-p/13897852
+## SAP Build Code_ Full-Stack Application – Joule Generate Full-stack project
+### https://community.sap.com/t5/technology-blogs-by-sap/generative-ai-based-sap-fiori-app-development-with-joule-directly-from-the/ba-p/13654153
+## SAP Build Code_ Full-Stack Application – Joule Generate CAP + Fiori Template
+### https://developers.sap.com/tutorials/build-code-complex.html
+## Help portal for Project Accelerator
+### https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html

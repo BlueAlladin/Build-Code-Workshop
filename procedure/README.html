@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+ <head>
+  <title>IntelliJ Markdown Preview</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>:root { --default-font-size: 13px; } body { background-color: rgba(30, 31, 34, 255.0); font-size: var(--default-font-size) !important; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(188, 190, 196, 255.0); } a { color: rgba(107, 155, 250, 255.0); } table td, table th { border: 1px solid rgba(57, 59, 64, 255.0); } hr { background-color: rgba(57, 59, 64, 255.0); } kbd, tr { border: 1px solid rgba(57, 59, 64, 255.0); } h6 { color: rgba(111, 115, 122, 255.0); } blockquote { border-left: 2px solid rgba(107, 155, 250, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(166, 166, 166, 0.278431); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(166, 166, 166, 0.349020); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { visibility: hidden; max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { visibility: visible; /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+ </head>
+ <body>
+  <div md-src-pos="0..20920">
+   <h1 id="sap-build-code-workshop" md-src-pos="0..27">SAP Build Code Workshop</h1>
+   <h2 md-src-pos="29..49" id="business-overview">Business Overview</h2>
+   <p md-src-pos="50..75"><img src="http://localhost:63342/markdownPreview/882945133/img_31.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img31png" __idea-generated="true" md-src-pos="50..75" data-original-src="img_31.png"></p>
+   <h4 id="firstly-scene-3---create-delivery-plan-for-create-delivery-note-in-batch" md-src-pos="76..154">Firstly, Scene 3 - Create Delivery Plan for create delivery note in batch</h4>
+   <h4 id="secondly-scene-2---list-created-outbound-delivery" md-src-pos="155..210">Secondly, Scene 2 - List Created Outbound Delivery</h4>
+   <h4 id="thirdly-scene-1---scan-the-barcode-trigger-pgi-for-dn-under-specific-picking-number" md-src-pos="211..301">Thirdly, Scene 1 - Scan the barcode, trigger PGI for DN under specific picking number</h4>
+   <h2 id="scene-0---prerequisite" md-src-pos="303..329">Scene 0 - Prerequisite</h2>
+   <h3 id="01-check-the-subscription" md-src-pos="331..361">0.1 Check the Subscription</h3>
+   <p md-src-pos="362..535"><span md-src-pos="362..376">SAP Build Code</span><br><span md-src-pos="379..393">SAP HANA Cloud</span><br><span md-src-pos="396..427">SAP Business Applicaiton Studio</span><br><span md-src-pos="430..450">SAP Build Work Zone,</span> <span md-src-pos="451..467">standard edition</span><br><img src="http://localhost:63342/markdownPreview/882945133/images/BTP_subscription.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="470..535" data-original-src="images/BTP_subscription.png"></p>
+   <h3 id="02-hana-dn-instance-create-and-configuration" md-src-pos="537..586">0.2 HANA DN Instance Create and Configuration</h3>
+   <p md-src-pos="587..679"><img src="http://localhost:63342/markdownPreview/882945133/img_10.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img10png" __idea-generated="true" md-src-pos="587..612" data-original-src="img_10.png"> <span md-src-pos="613..625">Allow all IP</span> <img src="http://localhost:63342/markdownPreview/882945133/img_9.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img9png" __idea-generated="true" md-src-pos="626..649" data-original-src="img_9.png"> <span md-src-pos="650..679">Use Default for other setting</span></p>
+   <h3 id="03-define-destination-in-sub-account-for-connection-to-s4" md-src-pos="681..743">0.3 Define Destination in Sub Account for connection to S4</h3>
+   <p md-src-pos="744..807"><span md-src-pos="744..772">Add following 2 destination,</span> <span md-src-pos="773..807">password will be provided in chat.</span></p>
+   <p md-src-pos="809..1047"><a href="file:/C:/Users/I540551/OneDrive%20-%20SAP%20SE/document/sap%20build%20code/procedure/destination%2Fworkshop_outbound_delivery_api" md-src-pos="809..887">workshop_outbound_delivery_api</a> <img src="http://localhost:63342/markdownPreview/882945133/images/BTP_destination.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="888..952" data-original-src="images/BTP_destination.png"> <a href="file:/C:/Users/I540551/OneDrive%20-%20SAP%20SE/document/sap%20build%20code/procedure/..%2F..%2F..%2F..%2FDownloads%2Fworkshop_sandbox" md-src-pos="953..1021">workshop_sandbox</a> <img src="http://localhost:63342/markdownPreview/882945133/img_12.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img12png" __idea-generated="true" md-src-pos="1022..1047" data-original-src="img_12.png"></p>
+   <h3 id="04-postman-may-help-with-testing" md-src-pos="1048..1086">0.4 Postman may help with testing~</h3>
+   <h3 id="05-used-backend-service" md-src-pos="1088..1116">0.5 Used Backend Service</h3>
+   <h4 id="051-mock-mes-system-manage-pick-palletlist-dnlist" md-src-pos="1118..1175">0.5.1 Mock MES system: Manage Pick-PalletList-DNList</h4>
+   <h5 id="get-all-picknumber" md-src-pos="1176..1200">Get All pickNumber</h5>
+   <h5 id="get-httpspickmock-fantastic-platypus-sjcfappsus10-002hanaondemandcompicks" md-src-pos="1201..1289">GET <a href="https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks" md-src-pos="1211..1289">https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks</a></h5>
+   <p md-src-pos="1290..1299"><span md-src-pos="1290..1297">Request</span>:</p>
+   <pre class="code-fence" md-src-pos="1300..1312"><div class="code-fence-highlighter-copy-button" data-fence-content="Tm9uZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="1300..1312"><span md-src-pos="1300..1304"></span><span md-src-pos="1304..1309">None
+</span><span md-src-pos="1309..1312"></span></code></pre>
+   <p md-src-pos="1313..1323"><span md-src-pos="1313..1321">Response</span>:</p>
+   <pre class="code-fence" md-src-pos="1324..1625"><div class="code-fence-highlighter-copy-button" data-fence-content="ewogICAgInBpY2tOdW1iZXJzIjogWwogICAgICAgICIyMDAwMTAwMDAxIiwKICAgICAgICAiMjAwMDEwMDAwMiIsCiAgICAgICAgIjIwMDAxMDAwMDMiLAogICAgICAgICIyMDAwMTAwMDA0IiwKICAgICAgICAiMjAwMDEwMDAwNSIsCiAgICAgICAgIjIwMDAxMDAwMDYiLAogICAgICAgICIyMDAwMTAwMDA3IiwKICAgICAgICAiMjAwMDEwMDAwOCIsCiAgICAgICAgIjIwMDAxMDAwMDkiLAogICAgICAgICIyMDAwMTAwMDEwIiwKICAgICAgICAiMjAwMDEwMDAxMSIsCiAgICAgICAgIjIwMDAxMDAwMTIiCiAgICBdCn0=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="1324..1625"><span md-src-pos="1324..1328"></span><span md-src-pos="1328..1330">{
+</span><span md-src-pos="1330..1361">    "pickNumbers": [
+</span><span md-src-pos="1361..1393">        "2000100001",
+</span><span md-src-pos="1393..1425">        "2000100002",
+</span><span md-src-pos="1425..1457">        "2000100003",
+</span><span md-src-pos="1457..1489">        "2000100004",
+</span><span md-src-pos="1489..1521">        "2000100005",
+</span><span md-src-pos="1521..1553">        "2000100006",
+</span><span md-src-pos="1553..1585">        "2000100007",
+</span><span md-src-pos="1585..1617">        "2000100008",
+</span><span md-src-pos="1617..1649">        "2000100009",
+</span><span md-src-pos="1649..1681">        "2000100010",
+</span><span md-src-pos="1681..1713">        "2000100011",
+</span><span md-src-pos="1713..1744">        "2000100012"
+</span><span md-src-pos="1744..1750">    ]
+</span><span md-src-pos="1750..1752">}
+</span><span md-src-pos="1622..1625"></span></code></pre>
+   <h5 id="get-specific-pick-data" md-src-pos="1627..1655">Get Specific pick Data</h5>
+   <h5 id="get-httpspickmock-fantastic-platypus-sjcfappsus10-002hanaondemandcompickspicknumber" md-src-pos="1656..1757">GET <a href="https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks/%7BPickNumber%7D" md-src-pos="1666..1757">https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks/{PickNumber}</a></h5>
+   <p md-src-pos="1758..1767"><span md-src-pos="1758..1765">Request</span>:</p>
+   <pre class="code-fence" md-src-pos="1768..1780"><div class="code-fence-highlighter-copy-button" data-fence-content="Tm9uZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="1768..1780"><span md-src-pos="1768..1772"></span><span md-src-pos="1772..1777">None
+</span><span md-src-pos="1777..1780"></span></code></pre>
+   <p md-src-pos="1781..1791"><span md-src-pos="1781..1789">Response</span>:</p>
+   <pre class="code-fence" md-src-pos="1792..2114"><div class="code-fence-highlighter-copy-button" data-fence-content="ewogICAgIkROTGlzdCI6IFsKICAgICAgICB7CiAgICAgICAgICAgICJETk51bWJlciI6ICIwMDI4ODgwOTAzIgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgICAiRE5OdW1iZXIiOiAiNjc4OTIzMTQ1MyIKICAgICAgICB9CiAgICBdLAogICAgInBhbGxldExpc3QiOiBbCiAgICAgICAgewogICAgICAgICAgICAicGFsbGV0SUQiOiAiMDAwMDA1MDAwNSIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgInBhbGxldElEIjogIjAwMDAwNTAwMDYiCiAgICAgICAgfQogICAgXSwKICAgICJwaWNrTnVtYmVyIjogIjIwMDAxMDAwMDMiCn0=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="1792..2114"><span md-src-pos="1792..1796"></span><span md-src-pos="1796..1798">{
+</span><span md-src-pos="1798..1824">    "DNList": [
+</span><span md-src-pos="1824..1834">        {
+</span><span md-src-pos="1834..1891">            "DNNumber": "0028880903"
+</span><span md-src-pos="1891..1902">        },
+</span><span md-src-pos="1902..1912">        {
+</span><span md-src-pos="1912..1969">            "DNNumber": "6789231453"
+</span><span md-src-pos="1969..1979">        }
+</span><span md-src-pos="1979..1986">    ],
+</span><span md-src-pos="1986..2016">    "palletList": [
+</span><span md-src-pos="2016..2026">        {
+</span><span md-src-pos="2026..2083">            "palletID": "0000050005"
+</span><span md-src-pos="2083..2094">        },
+</span><span md-src-pos="2094..2104">        {
+</span><span md-src-pos="2104..2161">            "palletID": "0000050006"
+</span><span md-src-pos="2161..2171">        }
+</span><span md-src-pos="2171..2178">    ],
+</span><span md-src-pos="2178..2229">    "pickNumber": "2000100003"
+</span><span md-src-pos="2229..2231">}
+</span><span md-src-pos="2111..2114"></span></code></pre>
+   <h5 id="create-pick-with-dn-list" md-src-pos="2116..2146">Create Pick with DN List</h5>
+   <h5 id="post-httpspickmock-fantastic-platypus-sjcfappsus10-002hanaondemandcompicks" md-src-pos="2147..2236">POST <a href="https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks" md-src-pos="2158..2236">https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks</a></h5>
+   <p md-src-pos="2237..2244"><span md-src-pos="2237..2244">Request</span></p>
+   <pre class="code-fence" md-src-pos="2245..2299"><div class="code-fence-highlighter-copy-button" data-fence-content="ewogICAgIkROTGlzdCI6IFsKICAgICAgICAiWFhYWFhYWFhYWCIKICAgIF0KfQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="2245..2299"><span md-src-pos="2245..2249"></span><span md-src-pos="2249..2251">{
+</span><span md-src-pos="2251..2277">    "DNList": [
+</span><span md-src-pos="2277..2308">        "XXXXXXXXXX"
+</span><span md-src-pos="2308..2314">    ]
+</span><span md-src-pos="2314..2316">}
+</span><span md-src-pos="2296..2299"></span></code></pre>
+   <p md-src-pos="2300..2308"><span md-src-pos="2300..2308">Response</span></p>
+   <pre class="code-fence" md-src-pos="2309..2351"><div class="code-fence-highlighter-copy-button" data-fence-content="ewogICAgInBpY2tOdW1iZXIiOiAiMjAwMDEwMDAxMyIKfQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="2309..2351"><span md-src-pos="2309..2313"></span><span md-src-pos="2313..2315">{
+</span><span md-src-pos="2315..2366">    "pickNumber": "2000100013"
+</span><span md-src-pos="2366..2368">}
+</span><span md-src-pos="2348..2351"></span></code></pre>
+   <h4 id="052-delivery-document-odata" md-src-pos="2352..2386">0.5.2 Delivery Document OData</h4>
+   <h5 id="create-dn" md-src-pos="2387..2402">Create DN</h5>
+   <p md-src-pos="2403..2416"><span md-src-pos="2403..2407">Post</span> <span md-src-pos="2409..2416">Request</span></p>
+   <pre class="code-fence" md-src-pos="2417..2716"><div class="code-fence-highlighter-copy-button" data-fence-content="ewogICAgInRvX0RlbGl2ZXJ5RG9jdW1lbnRJdGVtIjogewogICAgICAgICJyZXN1bHRzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAiUmVmZXJlbmNlU0REb2N1bWVudCI6ICI0NDc3OTMiLAogICAgICAgICAgICAgICAgIlJlZmVyZW5jZVNERG9jdW1lbnRJdGVtIjogIjEwIiwKICAgICAgICAgICAgICAgICJBY3R1YWxEZWxpdmVyeVF1YW50aXR5IjogIjEiLAogICAgICAgICAgICAgICAgIkRlbGl2ZXJ5UXVhbnRpdHlVbml0IjogIlBDIgogICAgICAgICAgICB9CiAgICAgICAgXQogICAgfQp9">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="2417..2716"><span md-src-pos="2417..2421"></span><span md-src-pos="2421..2423">{
+</span><span md-src-pos="2423..2466">    "to_DeliveryDocumentItem": {
+</span><span md-src-pos="2466..2497">        "results": [
+</span><span md-src-pos="2497..2511">            {
+</span><span md-src-pos="2511..2580">                "ReferenceSDDocument": "447793",
+</span><span md-src-pos="2580..2649">                "ReferenceSDDocumentItem": "10",
+</span><span md-src-pos="2649..2716">                "ActualDeliveryQuantity": "1",
+</span><span md-src-pos="2716..2781">                "DeliveryQuantityUnit": "PC"
+</span><span md-src-pos="2781..2795">            }
+</span><span md-src-pos="2795..2805">        ]
+</span><span md-src-pos="2805..2811">    }
+</span><span md-src-pos="2811..2813">}
+</span><span md-src-pos="2713..2716"></span></code></pre>
+   <p md-src-pos="2717..2725"><span md-src-pos="2717..2725">Response</span></p>
+   <pre class="code-fence" md-src-pos="2726..11289"><div class="code-fence-highlighter-copy-button" data-fence-content="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGVudHJ5IG06ZXRhZz0iVy8mcXVvdDsnMDAwMScmcXVvdDsiIHhtbDpiYXNlPSJodHRwczovL215MzAwMTgxLWFwaS5zNGhhbmEub25kZW1hbmQuY29tL3NhcC9vcHUvb2RhdGEvc2FwL0FQSV9PVVRCT1VORF9ERUxJVkVSWV9TUlY7dj0wMDAyLyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDUvQXRvbSIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9hZG8vMjAwNy8wOC9kYXRhc2VydmljZXMvbWV0YWRhdGEiIHhtbG5zOmQ9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWRvLzIwMDcvMDgvZGF0YXNlcnZpY2VzIj4KICAgIDxpZD5odHRwczovL215MzAwMTgxLWFwaS5zNGhhbmEub25kZW1hbmQuY29tL3NhcC9vcHUvb2RhdGEvc2FwL0FQSV9PVVRCT1VORF9ERUxJVkVSWV9TUlY7dj0wMDAyL0FfT3V0YkRlbGl2ZXJ5SGVhZGVyKCc4MDQxNTQ0MycpPC9pZD4KICAgIDx0aXRsZSB0eXBlPSJ0ZXh0Ij5BX091dGJEZWxpdmVyeUhlYWRlcignODA0MTU0NDMnKTwvdGl0bGU+CiAgICA8dXBkYXRlZD4yMDI1LTAzLTI1VDA5OjU1OjU4WjwvdXBkYXRlZD4KICAgIDxjYXRlZ29yeSB0ZXJtPSJBUElfT1VUQk9VTkRfREVMSVZFUllfU1JWLkFfT3V0YkRlbGl2ZXJ5SGVhZGVyVHlwZSIgc2NoZW1lPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2Fkby8yMDA3LzA4L2RhdGFzZXJ2aWNlcy9zY2hlbWUiLz4KICAgIDxsaW5rIGhyZWY9IkFfT3V0YkRlbGl2ZXJ5SGVhZGVyKCc4MDQxNTQ0MycpIiByZWw9ImVkaXQiIHRpdGxlPSJBX091dGJEZWxpdmVyeUhlYWRlclR5cGUiLz4KICAgIDxsaW5rIGhyZWY9IkFfT3V0YkRlbGl2ZXJ5SGVhZGVyKCc4MDQxNTQ0MycpL3RvX0RlbGl2ZXJ5RG9jdW1lbnRUZXh0IiByZWw9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWRvLzIwMDcvMDgvZGF0YXNlcnZpY2VzL3JlbGF0ZWQvdG9fRGVsaXZlcnlEb2N1bWVudFRleHQiIHR5cGU9ImFwcGxpY2F0aW9uL2F0b20reG1sO3R5cGU9ZmVlZCIgdGl0bGU9InRvX0RlbGl2ZXJ5RG9jdW1lbnRUZXh0Ii8+CiAgICA8bGluayBocmVmPSJBX091dGJEZWxpdmVyeUhlYWRlcignODA0MTU0NDMnKS90b19IYW5kbGluZ1VuaXRIZWFkZXJEZWxpdmVyeSIgcmVsPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2Fkby8yMDA3LzA4L2RhdGFzZXJ2aWNlcy9yZWxhdGVkL3RvX0hhbmRsaW5nVW5pdEhlYWRlckRlbGl2ZXJ5IiB0eXBlPSJhcHBsaWNhdGlvbi9hdG9tK3htbDt0eXBlPWZlZWQiIHRpdGxlPSJ0b19IYW5kbGluZ1VuaXRIZWFkZXJEZWxpdmVyeSIvPgogICAgPGxpbmsgaHJlZj0iQV9PdXRiRGVsaXZlcnlIZWFkZXIoJzgwNDE1NDQzJykvdG9fRGVsaXZlcnlEb2N1bWVudFBhcnRuZXIiIHJlbD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9hZG8vMjAwNy8wOC9kYXRhc2VydmljZXMvcmVsYXRlZC90b19EZWxpdmVyeURvY3VtZW50UGFydG5lciIgdHlwZT0iYXBwbGljYXRpb24vYXRvbSt4bWw7dHlwZT1mZWVkIiB0aXRsZT0idG9fRGVsaXZlcnlEb2N1bWVudFBhcnRuZXIiLz4KICAgIDxsaW5rIGhyZWY9IkFfT3V0YkRlbGl2ZXJ5SGVhZGVyKCc4MDQxNTQ0MycpL3RvX0RlbGl2ZXJ5RG9jdW1lbnRJdGVtIiByZWw9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWRvLzIwMDcvMDgvZGF0YXNlcnZpY2VzL3JlbGF0ZWQvdG9fRGVsaXZlcnlEb2N1bWVudEl0ZW0iIHR5cGU9ImFwcGxpY2F0aW9uL2F0b20reG1sO3R5cGU9ZmVlZCIgdGl0bGU9InRvX0RlbGl2ZXJ5RG9jdW1lbnRJdGVtIj4KICAgICAgICA8bTppbmxpbmU+CiAgICAgICAgICAgIDxmZWVkIHhtbDpiYXNlPSJodHRwczovL215MzAwMTgxLWFwaS5zNGhhbmEub25kZW1hbmQuY29tL3NhcC9vcHUvb2RhdGEvc2FwL0FQSV9PVVRCT1VORF9ERUxJVkVSWV9TUlY7dj0wMDAyLyI+CiAgICAgICAgICAgICAgICA8aWQ+aHR0cHM6Ly9teTMwMDE4MS1hcGkuczRoYW5hLm9uZGVtYW5kLmNvbS9zYXAvb3B1L29kYXRhL3NhcC9BUElfT1VUQk9VTkRfREVMSVZFUllfU1JWO3Y9MDAwMi9BX091dGJEZWxpdmVyeUhlYWRlcignODA0MTU0NDMnKS90b19EZWxpdmVyeURvY3VtZW50SXRlbTwvaWQ+CiAgICAgICAgICAgICAgICA8dGl0bGUgdHlwZT0idGV4dCI+QV9PdXRiRGVsaXZlcnlJdGVtPC90aXRsZT4KICAgICAgICAgICAgICAgIDx1cGRhdGVkPjIwMjUtMDMtMjVUMDk6NTU6NThaPC91cGRhdGVkPgogICAgICAgICAgICAgICAgPGF1dGhvcj4KICAgICAgICAgICAgICAgICAgICA8bmFtZS8+CiAgICAgICAgICAgICAgICA8L2F1dGhvcj4KICAgICAgICAgICAgICAgIDxsaW5rIGhyZWY9IkFfT3V0YkRlbGl2ZXJ5SGVhZGVyKCc4MDQxNTQ0MycpL3RvX0RlbGl2ZXJ5RG9jdW1lbnRJdGVtIiByZWw9InNlbGYiIHRpdGxlPSJBX091dGJEZWxpdmVyeUl0ZW0iLz4KICAgICAgICAgICAgPC9mZWVkPgogICAgICAgIDwvbTppbmxpbmU+CiAgICA8L2xpbms+CiAgICA8Y29udGVudCB0eXBlPSJhcHBsaWNhdGlvbi94bWwiPgogICAgICAgIDxtOnByb3BlcnRpZXM+CiAgICAgICAgICAgIDxkOkFjdHVhbERlbGl2ZXJ5Um91dGUvPgogICAgICAgICAgICA8ZDpTaGlwcGluZ2xvY2F0aW9udGltZXpvbmU+Q0VUPC9kOlNoaXBwaW5nbG9jYXRpb250aW1lem9uZT4KICAgICAgICAgICAgPGQ6QWN0dWFsR29vZHNNb3ZlbWVudERhdGUgbTpudWxsPSJ0cnVlIi8+CiAgICAgICAgICAgIDxkOlJlY2VpdmluZ2xvY2F0aW9udGltZXpvbmU+RVNUPC9kOlJlY2VpdmluZ2xvY2F0aW9udGltZXpvbmU+CiAgICAgICAgICAgIDxkOkFjdHVhbEdvb2RzTW92ZW1lbnRUaW1lPlBUMDBIMDBNMDBTPC9kOkFjdHVhbEdvb2RzTW92ZW1lbnRUaW1lPgogICAgICAgICAgICA8ZDpCaWxsaW5nRG9jdW1lbnREYXRlPjIwMjUtMDQtMzBUMDA6MDA6MDA8L2Q6QmlsbGluZ0RvY3VtZW50RGF0ZT4KICAgICAgICAgICAgPGQ6QmlsbE9mTGFkaW5nLz4KICAgICAgICAgICAgPGQ6Q29tcGxldGVEZWxpdmVyeUlzRGVmaW5lZD5mYWxzZTwvZDpDb21wbGV0ZURlbGl2ZXJ5SXNEZWZpbmVkPgogICAgICAgICAgICA8ZDpDb25maXJtYXRpb25UaW1lPlBUMDBIMDBNMDBTPC9kOkNvbmZpcm1hdGlvblRpbWU+CiAgICAgICAgICAgIDxkOkNyZWF0ZWRCeVVzZXI+Q0MwMDAwMDAwMTE1PC9kOkNyZWF0ZWRCeVVzZXI+CiAgICAgICAgICAgIDxkOkNyZWF0aW9uRGF0ZT4yMDI1LTAzLTI1VDAwOjAwOjAwPC9kOkNyZWF0aW9uRGF0ZT4KICAgICAgICAgICAgPGQ6Q3JlYXRpb25UaW1lPlBUMDlINTVNNTZTPC9kOkNyZWF0aW9uVGltZT4KICAgICAgICAgICAgPGQ6Q3VzdG9tZXJHcm91cD5aMTwvZDpDdXN0b21lckdyb3VwPgogICAgICAgICAgICA8ZDpEZWxpdmVyeUJsb2NrUmVhc29uLz4KICAgICAgICAgICAgPGQ6RGVsaXZlcnlEYXRlPjIwMjUtMDQtMzBUMDA6MDA6MDA8L2Q6RGVsaXZlcnlEYXRlPgogICAgICAgICAgICA8ZDpEZWxpdmVyeURvY3VtZW50PjgwNDE1NDQzPC9kOkRlbGl2ZXJ5RG9jdW1lbnQ+CiAgICAgICAgICAgIDxkOkRlbGl2ZXJ5RG9jdW1lbnRCeVN1cHBsaWVyLz4KICAgICAgICAgICAgPGQ6RGVsaXZlcnlEb2N1bWVudFR5cGU+TEY8L2Q6RGVsaXZlcnlEb2N1bWVudFR5cGU+CiAgICAgICAgICAgIDxkOkRlbGl2ZXJ5SXNJblBsYW50PmZhbHNlPC9kOkRlbGl2ZXJ5SXNJblBsYW50PgogICAgICAgICAgICA8ZDpEZWxpdmVyeVByaW9yaXR5PjAyPC9kOkRlbGl2ZXJ5UHJpb3JpdHk+CiAgICAgICAgICAgIDxkOkRlbGl2ZXJ5VGltZT5QVDA0SDAwTTAwUzwvZDpEZWxpdmVyeVRpbWU+CiAgICAgICAgICAgIDxkOkRlbGl2ZXJ5VmVyc2lvbj4wMDAxPC9kOkRlbGl2ZXJ5VmVyc2lvbj4KICAgICAgICAgICAgPGQ6RGVwcmVjaWF0aW9uUGVyY2VudGFnZT4wLjAwPC9kOkRlcHJlY2lhdGlvblBlcmNlbnRhZ2U+CiAgICAgICAgICAgIDxkOkRpc3RyU3RhdHVzQnlEZWNlbnRyYWxpemVkV3Jocy8+CiAgICAgICAgICAgIDxkOkRvY3VtZW50RGF0ZT4yMDI1LTAzLTI1VDAwOjAwOjAwPC9kOkRvY3VtZW50RGF0ZT4KICAgICAgICAgICAgPGQ6RXh0ZXJuYWxJZGVudGlmaWNhdGlvblR5cGUvPgogICAgICAgICAgICA8ZDpFeHRlcm5hbFRyYW5zcG9ydFN5c3RlbS8+CiAgICAgICAgICAgIDxkOkZhY3RvcnlDYWxlbmRhckJ5Q3VzdG9tZXIvPgogICAgICAgICAgICA8ZDpHb29kc0lzc3VlT3JSZWNlaXB0U2xpcE51bWJlci8+CiAgICAgICAgICAgIDxkOkdvb2RzSXNzdWVUaW1lPlBUMjJIMDBNMDBTPC9kOkdvb2RzSXNzdWVUaW1lPgogICAgICAgICAgICA8ZDpIYW5kbGluZ1VuaXRJblN0b2NrLz4KICAgICAgICAgICAgPGQ6SGRyR2VuZXJhbEluY29tcGxldGlvblN0YXR1cz5DPC9kOkhkckdlbmVyYWxJbmNvbXBsZXRpb25TdGF0dXM+CiAgICAgICAgICAgIDxkOkhkckdvb2RzTXZ0SW5jb21wbGV0aW9uU3RhdHVzPkM8L2Q6SGRyR29vZHNNdnRJbmNvbXBsZXRpb25TdGF0dXM+CiAgICAgICAgICAgIDxkOkhlYWRlckJpbGxnSW5jb21wbGV0aW9uU3RhdHVzPkM8L2Q6SGVhZGVyQmlsbGdJbmNvbXBsZXRpb25TdGF0dXM+CiAgICAgICAgICAgIDxkOkhlYWRlckJpbGxpbmdCbG9ja1JlYXNvbi8+CiAgICAgICAgICAgIDxkOkhlYWRlckRlbGl2SW5jb21wbGV0aW9uU3RhdHVzPkM8L2Q6SGVhZGVyRGVsaXZJbmNvbXBsZXRpb25TdGF0dXM+CiAgICAgICAgICAgIDxkOkhlYWRlckdyb3NzV2VpZ2h0PjEyLjcwMDwvZDpIZWFkZXJHcm9zc1dlaWdodD4KICAgICAgICAgICAgPGQ6SGVhZGVyTmV0V2VpZ2h0PjEwLjcwMDwvZDpIZWFkZXJOZXRXZWlnaHQ+CiAgICAgICAgICAgIDxkOkhlYWRlclBhY2tpbmdJbmNvbXBsZXRpb25TdHM+QzwvZDpIZWFkZXJQYWNraW5nSW5jb21wbGV0aW9uU3RzPgogICAgICAgICAgICA8ZDpIZWFkZXJQaWNrZ0luY29tcGxldGlvblN0YXR1cz5DPC9kOkhlYWRlclBpY2tnSW5jb21wbGV0aW9uU3RhdHVzPgogICAgICAgICAgICA8ZDpIZWFkZXJWb2x1bWU+MC4wMDA8L2Q6SGVhZGVyVm9sdW1lPgogICAgICAgICAgICA8ZDpIZWFkZXJWb2x1bWVVbml0Lz4KICAgICAgICAgICAgPGQ6SGVhZGVyV2VpZ2h0VW5pdD5LRzwvZDpIZWFkZXJXZWlnaHRVbml0PgogICAgICAgICAgICA8ZDpJbmNvdGVybXNDbGFzc2lmaWNhdGlvbj5DRlI8L2Q6SW5jb3Rlcm1zQ2xhc3NpZmljYXRpb24+CiAgICAgICAgICAgIDxkOkluY290ZXJtc1RyYW5zZmVyTG9jYXRpb24+Q29zdHMgJmFtcDsgRnJlaWdodDwvZDpJbmNvdGVybXNUcmFuc2ZlckxvY2F0aW9uPgogICAgICAgICAgICA8ZDpJbnRlcmNvbXBhbnlCaWxsaW5nRGF0ZSBtOm51bGw9InRydWUiLz4KICAgICAgICAgICAgPGQ6SW50ZXJuYWxGaW5hbmNpYWxEb2N1bWVudC8+CiAgICAgICAgICAgIDxkOklzRGVsaXZlcnlGb3JTaW5nbGVXYXJlaG91c2UvPgogICAgICAgICAgICA8ZDpJc0V4cG9ydERlbGl2ZXJ5Plg8L2Q6SXNFeHBvcnREZWxpdmVyeT4KICAgICAgICAgICAgPGQ6TGFzdENoYW5nZURhdGUgbTpudWxsPSJ0cnVlIi8+CiAgICAgICAgICAgIDxkOkxhc3RDaGFuZ2VkQnlVc2VyLz4KICAgICAgICAgICAgPGQ6TG9hZGluZ0RhdGU+MjAyNS0wNC0yOFQwMDowMDowMDwvZDpMb2FkaW5nRGF0ZT4KICAgICAgICAgICAgPGQ6TG9hZGluZ1BvaW50Lz4KICAgICAgICAgICAgPGQ6TG9hZGluZ1RpbWU+UFQyMkgwME0wMFM8L2Q6TG9hZGluZ1RpbWU+CiAgICAgICAgICAgIDxkOk1lYW5zT2ZUcmFuc3BvcnQvPgogICAgICAgICAgICA8ZDpNZWFuc09mVHJhbnNwb3J0UmVmTWF0ZXJpYWwvPgogICAgICAgICAgICA8ZDpNZWFuc09mVHJhbnNwb3J0VHlwZS8+CiAgICAgICAgICAgIDxkOk9yZGVyQ29tYmluYXRpb25Jc0FsbG93ZWQ+dHJ1ZTwvZDpPcmRlckNvbWJpbmF0aW9uSXNBbGxvd2VkPgogICAgICAgICAgICA8ZDpPcmRlcklELz4KICAgICAgICAgICAgPGQ6T3ZlcmFsbERlbGl2Q29uZlN0YXR1cy8+CiAgICAgICAgICAgIDxkOk92ZXJhbGxEZWxpdlJlbHRkQmlsbGdTdGF0dXM+QTwvZDpPdmVyYWxsRGVsaXZSZWx0ZEJpbGxnU3RhdHVzPgogICAgICAgICAgICA8ZDpPdmVyYWxsR29vZHNNb3ZlbWVudFN0YXR1cz5BPC9kOk92ZXJhbGxHb29kc01vdmVtZW50U3RhdHVzPgogICAgICAgICAgICA8ZDpPdmVyYWxsSW50Y29CaWxsaW5nU3RhdHVzLz4KICAgICAgICAgICAgPGQ6T3ZlcmFsbFBhY2tpbmdTdGF0dXMvPgogICAgICAgICAgICA8ZDpPdmVyYWxsUGlja2luZ0NvbmZTdGF0dXMvPgogICAgICAgICAgICA8ZDpPdmVyYWxsUGlja2luZ1N0YXR1cz5BPC9kOk92ZXJhbGxQaWNraW5nU3RhdHVzPgogICAgICAgICAgICA8ZDpPdmVyYWxsUHJvb2ZPZkRlbGl2ZXJ5U3RhdHVzLz4KICAgICAgICAgICAgPGQ6T3ZlcmFsbFNEUHJvY2Vzc1N0YXR1cz5BPC9kOk92ZXJhbGxTRFByb2Nlc3NTdGF0dXM+CiAgICAgICAgICAgIDxkOk92ZXJhbGxXYXJlaG91c2VBY3Rpdml0eVN0YXR1cy8+CiAgICAgICAgICAgIDxkOk92cmxJdG1EZWxpdkluY29tcGxldGlvblN0cz5DPC9kOk92cmxJdG1EZWxpdkluY29tcGxldGlvblN0cz4KICAgICAgICAgICAgPGQ6T3ZybEl0bUdkc012dEluY29tcGxldGlvblN0cz5DPC9kOk92cmxJdG1HZHNNdnRJbmNvbXBsZXRpb25TdHM+CiAgICAgICAgICAgIDxkOk92cmxJdG1HZW5lcmFsSW5jb21wbGV0aW9uU3RzPkM8L2Q6T3ZybEl0bUdlbmVyYWxJbmNvbXBsZXRpb25TdHM+CiAgICAgICAgICAgIDxkOk92cmxJdG1QYWNraW5nSW5jb21wbGV0aW9uU3RzPkM8L2Q6T3ZybEl0bVBhY2tpbmdJbmNvbXBsZXRpb25TdHM+CiAgICAgICAgICAgIDxkOk92cmxJdG1QaWNraW5nSW5jb21wbGV0aW9uU3RzPkM8L2Q6T3ZybEl0bVBpY2tpbmdJbmNvbXBsZXRpb25TdHM+CiAgICAgICAgICAgIDxkOlBheW1lbnRHdWFyYW50ZWVQcm9jZWR1cmUvPgogICAgICAgICAgICA8ZDpQaWNrZWRJdGVtc0xvY2F0aW9uLz4KICAgICAgICAgICAgPGQ6UGlja2luZ0RhdGU+MjAyNS0wNC0yM1QwMDowMDowMDwvZDpQaWNraW5nRGF0ZT4KICAgICAgICAgICAgPGQ6UGlja2luZ1RpbWU+UFQyMkgwME0wMFM8L2Q6UGlja2luZ1RpbWU+CiAgICAgICAgICAgIDxkOlBsYW5uZWRHb29kc0lzc3VlRGF0ZT4yMDI1LTA0LTI5VDAwOjAwOjAwPC9kOlBsYW5uZWRHb29kc0lzc3VlRGF0ZT4KICAgICAgICAgICAgPGQ6UHJvb2ZPZkRlbGl2ZXJ5RGF0ZSBtOm51bGw9InRydWUiLz4KICAgICAgICAgICAgPGQ6UHJvcG9zZWREZWxpdmVyeVJvdXRlLz4KICAgICAgICAgICAgPGQ6UmVjZWl2aW5nUGxhbnQvPgogICAgICAgICAgICA8ZDpSb3V0ZVNjaGVkdWxlLz4KICAgICAgICAgICAgPGQ6U2FsZXNEaXN0cmljdC8+CiAgICAgICAgICAgIDxkOlNhbGVzT2ZmaWNlLz4KICAgICAgICAgICAgPGQ6U2FsZXNPcmdhbml6YXRpb24+REVDMTwvZDpTYWxlc09yZ2FuaXphdGlvbj4KICAgICAgICAgICAgPGQ6U0REb2N1bWVudENhdGVnb3J5Pko8L2Q6U0REb2N1bWVudENhdGVnb3J5PgogICAgICAgICAgICA8ZDpTaGlwbWVudEJsb2NrUmVhc29uLz4KICAgICAgICAgICAgPGQ6U2hpcHBpbmdDb25kaXRpb24+MDE8L2Q6U2hpcHBpbmdDb25kaXRpb24+CiAgICAgICAgICAgIDxkOlNoaXBwaW5nUG9pbnQ+REVDMTwvZDpTaGlwcGluZ1BvaW50PgogICAgICAgICAgICA8ZDpTaGlwcGluZ1R5cGUvPgogICAgICAgICAgICA8ZDpTaGlwVG9QYXJ0eT5VU0NVX1NDMDQ8L2Q6U2hpcFRvUGFydHk+CiAgICAgICAgICAgIDxkOlNvbGRUb1BhcnR5PlVTQ1VfU0MwNDwvZDpTb2xkVG9QYXJ0eT4KICAgICAgICAgICAgPGQ6U3BlY2lhbFByb2Nlc3NpbmdDb2RlLz4KICAgICAgICAgICAgPGQ6U3RhdGlzdGljc0N1cnJlbmN5PkVVUjwvZDpTdGF0aXN0aWNzQ3VycmVuY3k+CiAgICAgICAgICAgIDxkOlN1cHBsaWVyLz4KICAgICAgICAgICAgPGQ6VG90YWxCbG9ja1N0YXR1cy8+CiAgICAgICAgICAgIDxkOlRvdGFsQ3JlZGl0Q2hlY2tTdGF0dXMvPgogICAgICAgICAgICA8ZDpUb3RhbE51bWJlck9mUGFja2FnZT4wMDAwMDwvZDpUb3RhbE51bWJlck9mUGFja2FnZT4KICAgICAgICAgICAgPGQ6VHJhbnNhY3Rpb25DdXJyZW5jeT5FVVI8L2Q6VHJhbnNhY3Rpb25DdXJyZW5jeT4KICAgICAgICAgICAgPGQ6VHJhbnNwb3J0YXRpb25Hcm91cD4wMDAxPC9kOlRyYW5zcG9ydGF0aW9uR3JvdXA+CiAgICAgICAgICAgIDxkOlRyYW5zcG9ydGF0aW9uUGxhbm5pbmdEYXRlPjIwMjUtMDQtMjhUMDA6MDA6MDA8L2Q6VHJhbnNwb3J0YXRpb25QbGFubmluZ0RhdGU+CiAgICAgICAgICAgIDxkOlRyYW5zcG9ydGF0aW9uUGxhbm5pbmdTdGF0dXMvPgogICAgICAgICAgICA8ZDpUcmFuc3BvcnRhdGlvblBsYW5uaW5nVGltZT5QVDIySDAwTTAwUzwvZDpUcmFuc3BvcnRhdGlvblBsYW5uaW5nVGltZT4KICAgICAgICAgICAgPGQ6VW5sb2FkaW5nUG9pbnROYW1lLz4KICAgICAgICAgICAgPGQ6V2FyZWhvdXNlLz4KICAgICAgICAgICAgPGQ6V2FyZWhvdXNlR2F0ZS8+CiAgICAgICAgICAgIDxkOldhcmVob3VzZVN0YWdpbmdBcmVhLz4KICAgICAgICA8L206cHJvcGVydGllcz4KICAgIDwvY29udGVudD4KPC9lbnRyeT4=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="2726..11289"><span md-src-pos="2726..2730"></span><span md-src-pos="2730..2795">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</span><span md-src-pos="2795..3174">&lt;entry m:etag="W/&amp;quot;'0001'&amp;quot;" xml:base="https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/" xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"&gt;
+</span><span md-src-pos="3174..3324">    &lt;id&gt;https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/A_OutbDeliveryHeader('80415443')&lt;/id&gt;
+</span><span md-src-pos="3324..3410">    &lt;title type="text"&gt;A_OutbDeliveryHeader('80415443')&lt;/title&gt;
+</span><span md-src-pos="3410..3466">    &lt;updated&gt;2025-03-25T09:55:58Z&lt;/updated&gt;
+</span><span md-src-pos="3466..3636">    &lt;category term="API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeaderType" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/&gt;
+</span><span md-src-pos="3636..3768">    &lt;link href="A_OutbDeliveryHeader('80415443')" rel="edit" title="A_OutbDeliveryHeaderType"/&gt;
+</span><span md-src-pos="3768..4052">    &lt;link href="A_OutbDeliveryHeader('80415443')/to_DeliveryDocumentText" rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/to_DeliveryDocumentText" type="application/atom+xml;type=feed" title="to_DeliveryDocumentText"/&gt;
+</span><span md-src-pos="4052..4354">    &lt;link href="A_OutbDeliveryHeader('80415443')/to_HandlingUnitHeaderDelivery" rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/to_HandlingUnitHeaderDelivery" type="application/atom+xml;type=feed" title="to_HandlingUnitHeaderDelivery"/&gt;
+</span><span md-src-pos="4354..4647">    &lt;link href="A_OutbDeliveryHeader('80415443')/to_DeliveryDocumentPartner" rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/to_DeliveryDocumentPartner" type="application/atom+xml;type=feed" title="to_DeliveryDocumentPartner"/&gt;
+</span><span md-src-pos="4647..4930">    &lt;link href="A_OutbDeliveryHeader('80415443')/to_DeliveryDocumentItem" rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/to_DeliveryDocumentItem" type="application/atom+xml;type=feed" title="to_DeliveryDocumentItem"&gt;
+</span><span md-src-pos="4930..4955">        &lt;m:inline&gt;
+</span><span md-src-pos="4955..5094">            &lt;feed xml:base="https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/"&gt;
+</span><span md-src-pos="5094..5280">                &lt;id&gt;https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/A_OutbDeliveryHeader('80415443')/to_DeliveryDocumentItem&lt;/id&gt;
+</span><span md-src-pos="5280..5364">                &lt;title type="text"&gt;A_OutbDeliveryItem&lt;/title&gt;
+</span><span md-src-pos="5364..5432">                &lt;updated&gt;2025-03-25T09:55:58Z&lt;/updated&gt;
+</span><span md-src-pos="5432..5463">                &lt;author&gt;
+</span><span md-src-pos="5463..5497">                    &lt;name/&gt;
+</span><span md-src-pos="5497..5529">                &lt;/author&gt;
+</span><span md-src-pos="5529..5691">                &lt;link href="A_OutbDeliveryHeader('80415443')/to_DeliveryDocumentItem" rel="self" title="A_OutbDeliveryItem"/&gt;
+</span><span md-src-pos="5691..5717">            &lt;/feed&gt;
+</span><span md-src-pos="5717..5743">        &lt;/m:inline&gt;
+</span><span md-src-pos="5743..5761">    &lt;/link&gt;
+</span><span md-src-pos="5761..5814">    &lt;content type="application/xml"&gt;
+</span><span md-src-pos="5814..5843">        &lt;m:properties&gt;
+</span><span md-src-pos="5843..5886">            &lt;d:ActualDeliveryRoute/&gt;
+</span><span md-src-pos="5886..5971">            &lt;d:Shippinglocationtimezone&gt;CET&lt;/d:Shippinglocationtimezone&gt;
+</span><span md-src-pos="5971..6042">            &lt;d:ActualGoodsMovementDate m:null="true"/&gt;
+</span><span md-src-pos="6042..6129">            &lt;d:Receivinglocationtimezone&gt;EST&lt;/d:Receivinglocationtimezone&gt;
+</span><span md-src-pos="6129..6220">            &lt;d:ActualGoodsMovementTime&gt;PT00H00M00S&lt;/d:ActualGoodsMovementTime&gt;
+</span><span md-src-pos="6220..6311">            &lt;d:BillingDocumentDate&gt;2025-04-30T00:00:00&lt;/d:BillingDocumentDate&gt;
+</span><span md-src-pos="6311..6347">            &lt;d:BillOfLading/&gt;
+</span><span md-src-pos="6347..6436">            &lt;d:CompleteDeliveryIsDefined&gt;false&lt;/d:CompleteDeliveryIsDefined&gt;
+</span><span md-src-pos="6436..6513">            &lt;d:ConfirmationTime&gt;PT00H00M00S&lt;/d:ConfirmationTime&gt;
+</span><span md-src-pos="6513..6585">            &lt;d:CreatedByUser&gt;CC0000000115&lt;/d:CreatedByUser&gt;
+</span><span md-src-pos="6585..6662">            &lt;d:CreationDate&gt;2025-03-25T00:00:00&lt;/d:CreationDate&gt;
+</span><span md-src-pos="6662..6731">            &lt;d:CreationTime&gt;PT09H55M56S&lt;/d:CreationTime&gt;
+</span><span md-src-pos="6731..6793">            &lt;d:CustomerGroup&gt;Z1&lt;/d:CustomerGroup&gt;
+</span><span md-src-pos="6793..6836">            &lt;d:DeliveryBlockReason/&gt;
+</span><span md-src-pos="6836..6913">            &lt;d:DeliveryDate&gt;2025-04-30T00:00:00&lt;/d:DeliveryDate&gt;
+</span><span md-src-pos="6913..6987">            &lt;d:DeliveryDocument&gt;80415443&lt;/d:DeliveryDocument&gt;
+</span><span md-src-pos="6987..7037">            &lt;d:DeliveryDocumentBySupplier/&gt;
+</span><span md-src-pos="7037..7113">            &lt;d:DeliveryDocumentType&gt;LF&lt;/d:DeliveryDocumentType&gt;
+</span><span md-src-pos="7113..7186">            &lt;d:DeliveryIsInPlant&gt;false&lt;/d:DeliveryIsInPlant&gt;
+</span><span md-src-pos="7186..7254">            &lt;d:DeliveryPriority&gt;02&lt;/d:DeliveryPriority&gt;
+</span><span md-src-pos="7254..7323">            &lt;d:DeliveryTime&gt;PT04H00M00S&lt;/d:DeliveryTime&gt;
+</span><span md-src-pos="7323..7391">            &lt;d:DeliveryVersion&gt;0001&lt;/d:DeliveryVersion&gt;
+</span><span md-src-pos="7391..7473">            &lt;d:DepreciationPercentage&gt;0.00&lt;/d:DepreciationPercentage&gt;
+</span><span md-src-pos="7473..7527">            &lt;d:DistrStatusByDecentralizedWrhs/&gt;
+</span><span md-src-pos="7527..7604">            &lt;d:DocumentDate&gt;2025-03-25T00:00:00&lt;/d:DocumentDate&gt;
+</span><span md-src-pos="7604..7654">            &lt;d:ExternalIdentificationType/&gt;
+</span><span md-src-pos="7654..7701">            &lt;d:ExternalTransportSystem/&gt;
+</span><span md-src-pos="7701..7750">            &lt;d:FactoryCalendarByCustomer/&gt;
+</span><span md-src-pos="7750..7803">            &lt;d:GoodsIssueOrReceiptSlipNumber/&gt;
+</span><span md-src-pos="7803..7876">            &lt;d:GoodsIssueTime&gt;PT22H00M00S&lt;/d:GoodsIssueTime&gt;
+</span><span md-src-pos="7876..7919">            &lt;d:HandlingUnitInStock/&gt;
+</span><span md-src-pos="7919..8010">            &lt;d:HdrGeneralIncompletionStatus&gt;C&lt;/d:HdrGeneralIncompletionStatus&gt;
+</span><span md-src-pos="8010..8103">            &lt;d:HdrGoodsMvtIncompletionStatus&gt;C&lt;/d:HdrGoodsMvtIncompletionStatus&gt;
+</span><span md-src-pos="8103..8196">            &lt;d:HeaderBillgIncompletionStatus&gt;C&lt;/d:HeaderBillgIncompletionStatus&gt;
+</span><span md-src-pos="8196..8244">            &lt;d:HeaderBillingBlockReason/&gt;
+</span><span md-src-pos="8244..8337">            &lt;d:HeaderDelivIncompletionStatus&gt;C&lt;/d:HeaderDelivIncompletionStatus&gt;
+</span><span md-src-pos="8337..8411">            &lt;d:HeaderGrossWeight&gt;12.700&lt;/d:HeaderGrossWeight&gt;
+</span><span md-src-pos="8411..8481">            &lt;d:HeaderNetWeight&gt;10.700&lt;/d:HeaderNetWeight&gt;
+</span><span md-src-pos="8481..8572">            &lt;d:HeaderPackingIncompletionSts&gt;C&lt;/d:HeaderPackingIncompletionSts&gt;
+</span><span md-src-pos="8572..8665">            &lt;d:HeaderPickgIncompletionStatus&gt;C&lt;/d:HeaderPickgIncompletionStatus&gt;
+</span><span md-src-pos="8665..8728">            &lt;d:HeaderVolume&gt;0.000&lt;/d:HeaderVolume&gt;
+</span><span md-src-pos="8728..8768">            &lt;d:HeaderVolumeUnit/&gt;
+</span><span md-src-pos="8768..8836">            &lt;d:HeaderWeightUnit&gt;KG&lt;/d:HeaderWeightUnit&gt;
+</span><span md-src-pos="8836..8919">            &lt;d:IncotermsClassification&gt;CFR&lt;/d:IncotermsClassification&gt;
+</span><span md-src-pos="8919..9026">            &lt;d:IncotermsTransferLocation&gt;Costs &amp;amp; Freight&lt;/d:IncotermsTransferLocation&gt;
+</span><span md-src-pos="9026..9097">            &lt;d:IntercompanyBillingDate m:null="true"/&gt;
+</span><span md-src-pos="9097..9146">            &lt;d:InternalFinancialDocument/&gt;
+</span><span md-src-pos="9146..9198">            &lt;d:IsDeliveryForSingleWarehouse/&gt;
+</span><span md-src-pos="9198..9265">            &lt;d:IsExportDelivery&gt;X&lt;/d:IsExportDelivery&gt;
+</span><span md-src-pos="9265..9327">            &lt;d:LastChangeDate m:null="true"/&gt;
+</span><span md-src-pos="9327..9368">            &lt;d:LastChangedByUser/&gt;
+</span><span md-src-pos="9368..9443">            &lt;d:LoadingDate&gt;2025-04-28T00:00:00&lt;/d:LoadingDate&gt;
+</span><span md-src-pos="9443..9479">            &lt;d:LoadingPoint/&gt;
+</span><span md-src-pos="9479..9546">            &lt;d:LoadingTime&gt;PT22H00M00S&lt;/d:LoadingTime&gt;
+</span><span md-src-pos="9546..9586">            &lt;d:MeansOfTransport/&gt;
+</span><span md-src-pos="9586..9637">            &lt;d:MeansOfTransportRefMaterial/&gt;
+</span><span md-src-pos="9637..9681">            &lt;d:MeansOfTransportType/&gt;
+</span><span md-src-pos="9681..9769">            &lt;d:OrderCombinationIsAllowed&gt;true&lt;/d:OrderCombinationIsAllowed&gt;
+</span><span md-src-pos="9769..9800">            &lt;d:OrderID/&gt;
+</span><span md-src-pos="9800..9846">            &lt;d:OverallDelivConfStatus/&gt;
+</span><span md-src-pos="9846..9937">            &lt;d:OverallDelivReltdBillgStatus&gt;A&lt;/d:OverallDelivReltdBillgStatus&gt;
+</span><span md-src-pos="9937..10024">            &lt;d:OverallGoodsMovementStatus&gt;A&lt;/d:OverallGoodsMovementStatus&gt;
+</span><span md-src-pos="10024..10073">            &lt;d:OverallIntcoBillingStatus/&gt;
+</span><span md-src-pos="10073..10117">            &lt;d:OverallPackingStatus/&gt;
+</span><span md-src-pos="10117..10165">            &lt;d:OverallPickingConfStatus/&gt;
+</span><span md-src-pos="10165..10240">            &lt;d:OverallPickingStatus&gt;A&lt;/d:OverallPickingStatus&gt;
+</span><span md-src-pos="10240..10292">            &lt;d:OverallProofOfDeliveryStatus/&gt;
+</span><span md-src-pos="10292..10371">            &lt;d:OverallSDProcessStatus&gt;A&lt;/d:OverallSDProcessStatus&gt;
+</span><span md-src-pos="10371..10425">            &lt;d:OverallWarehouseActivityStatus/&gt;
+</span><span md-src-pos="10425..10514">            &lt;d:OvrlItmDelivIncompletionSts&gt;C&lt;/d:OvrlItmDelivIncompletionSts&gt;
+</span><span md-src-pos="10514..10605">            &lt;d:OvrlItmGdsMvtIncompletionSts&gt;C&lt;/d:OvrlItmGdsMvtIncompletionSts&gt;
+</span><span md-src-pos="10605..10698">            &lt;d:OvrlItmGeneralIncompletionSts&gt;C&lt;/d:OvrlItmGeneralIncompletionSts&gt;
+</span><span md-src-pos="10698..10791">            &lt;d:OvrlItmPackingIncompletionSts&gt;C&lt;/d:OvrlItmPackingIncompletionSts&gt;
+</span><span md-src-pos="10791..10884">            &lt;d:OvrlItmPickingIncompletionSts&gt;C&lt;/d:OvrlItmPickingIncompletionSts&gt;
+</span><span md-src-pos="10884..10933">            &lt;d:PaymentGuaranteeProcedure/&gt;
+</span><span md-src-pos="10933..10976">            &lt;d:PickedItemsLocation/&gt;
+</span><span md-src-pos="10976..11051">            &lt;d:PickingDate&gt;2025-04-23T00:00:00&lt;/d:PickingDate&gt;
+</span><span md-src-pos="11051..11118">            &lt;d:PickingTime&gt;PT22H00M00S&lt;/d:PickingTime&gt;
+</span><span md-src-pos="11118..11213">            &lt;d:PlannedGoodsIssueDate&gt;2025-04-29T00:00:00&lt;/d:PlannedGoodsIssueDate&gt;
+</span><span md-src-pos="11213..11280">            &lt;d:ProofOfDeliveryDate m:null="true"/&gt;
+</span><span md-src-pos="11280..11325">            &lt;d:ProposedDeliveryRoute/&gt;
+</span><span md-src-pos="11325..11363">            &lt;d:ReceivingPlant/&gt;
+</span><span md-src-pos="11363..11400">            &lt;d:RouteSchedule/&gt;
+</span><span md-src-pos="11400..11437">            &lt;d:SalesDistrict/&gt;
+</span><span md-src-pos="11437..11472">            &lt;d:SalesOffice/&gt;
+</span><span md-src-pos="11472..11544">            &lt;d:SalesOrganization&gt;DEC1&lt;/d:SalesOrganization&gt;
+</span><span md-src-pos="11544..11615">            &lt;d:SDDocumentCategory&gt;J&lt;/d:SDDocumentCategory&gt;
+</span><span md-src-pos="11615..11658">            &lt;d:ShipmentBlockReason/&gt;
+</span><span md-src-pos="11658..11728">            &lt;d:ShippingCondition&gt;01&lt;/d:ShippingCondition&gt;
+</span><span md-src-pos="11728..11792">            &lt;d:ShippingPoint&gt;DEC1&lt;/d:ShippingPoint&gt;
+</span><span md-src-pos="11792..11828">            &lt;d:ShippingType/&gt;
+</span><span md-src-pos="11828..11893">            &lt;d:ShipToParty&gt;USCU_SC04&lt;/d:ShipToParty&gt;
+</span><span md-src-pos="11893..11958">            &lt;d:SoldToParty&gt;USCU_SC04&lt;/d:SoldToParty&gt;
+</span><span md-src-pos="11958..12003">            &lt;d:SpecialProcessingCode/&gt;
+</span><span md-src-pos="12003..12076">            &lt;d:StatisticsCurrency&gt;EUR&lt;/d:StatisticsCurrency&gt;
+</span><span md-src-pos="12076..12108">            &lt;d:Supplier/&gt;
+</span><span md-src-pos="12108..12148">            &lt;d:TotalBlockStatus/&gt;
+</span><span md-src-pos="12148..12194">            &lt;d:TotalCreditCheckStatus/&gt;
+</span><span md-src-pos="12194..12273">            &lt;d:TotalNumberOfPackage&gt;00000&lt;/d:TotalNumberOfPackage&gt;
+</span><span md-src-pos="12273..12348">            &lt;d:TransactionCurrency&gt;EUR&lt;/d:TransactionCurrency&gt;
+</span><span md-src-pos="12348..12424">            &lt;d:TransportationGroup&gt;0001&lt;/d:TransportationGroup&gt;
+</span><span md-src-pos="12424..12529">            &lt;d:TransportationPlanningDate&gt;2025-04-28T00:00:00&lt;/d:TransportationPlanningDate&gt;
+</span><span md-src-pos="12529..12581">            &lt;d:TransportationPlanningStatus/&gt;
+</span><span md-src-pos="12581..12678">            &lt;d:TransportationPlanningTime&gt;PT22H00M00S&lt;/d:TransportationPlanningTime&gt;
+</span><span md-src-pos="12678..12720">            &lt;d:UnloadingPointName/&gt;
+</span><span md-src-pos="12720..12753">            &lt;d:Warehouse/&gt;
+</span><span md-src-pos="12753..12790">            &lt;d:WarehouseGate/&gt;
+</span><span md-src-pos="12790..12834">            &lt;d:WarehouseStagingArea/&gt;
+</span><span md-src-pos="12834..12864">        &lt;/m:properties&gt;
+</span><span md-src-pos="12864..12885">    &lt;/content&gt;
+</span><span md-src-pos="12885..12900">&lt;/entry&gt;
+</span><span md-src-pos="11286..11289"></span></code></pre>
+   <h5 id="pgi" md-src-pos="11290..11299">PGI</h5>
+   <h5 id="post-httpsmy300181-apis4hanaondemandcomsapopuodatasapapi_outbound_delivery_srvv0002postgoodsissuedeliverydocumentdnnumber" md-src-pos="11300..11447">POST <a href="https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/PostGoodsIssue?DeliveryDocument='%7BDNNumber%7D" md-src-pos="11311..11446">https://my300181-api.s4hana.ondemand.com/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/PostGoodsIssue?DeliveryDocument='{DNNumber}</a>'</h5>
+   <p md-src-pos="11448..11455"><span md-src-pos="11448..11455">Request</span></p>
+   <pre class="code-fence" md-src-pos="11456..11468"><div class="code-fence-highlighter-copy-button" data-fence-content="Tm9uZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="11456..11468"><span md-src-pos="11456..11460"></span><span md-src-pos="11460..11465">None
+</span><span md-src-pos="11465..11468"></span></code></pre>
+   <p md-src-pos="11469..11477"><span md-src-pos="11469..11477">Response</span></p>
+   <pre class="code-fence" md-src-pos="11478..11485"><div class="code-fence-highlighter-copy-button" data-fence-content="">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="11478..11485"><span md-src-pos="11478..11482"></span><span md-src-pos="11482..11482"></span><span md-src-pos="11482..11485"></span></code></pre>
+   <h2 id="scene-1---create-scan-page-with-ui5-freestyle" md-src-pos="11486..11535">Scene 1 - Create Scan Page with UI5 Freestyle</h2>
+   <h3 id="11-create-project" md-src-pos="11539..11561">1.1 Create Project</h3>
+   <p md-src-pos="11562..11740"><span md-src-pos="11563..11564">-</span>&gt; <span md-src-pos="11566..11587">Enter SAP Build Lobby</span><br><span md-src-pos="11591..11592">-</span>&gt; <span md-src-pos="11594..11606">Click Create</span><br><span md-src-pos="11610..11611">-</span>&gt; <span md-src-pos="11613..11633">Build an Application</span> <span md-src-pos="11634..11635">-</span>&gt; <span md-src-pos="11637..11651">SAP Build Code</span> <span md-src-pos="11652..11653">-</span>&gt; <span md-src-pos="11655..11676">SAP Fiori Application</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_create.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="11677..11740" data-original-src="images/ScanApp_create.png"></p>
+   <h3 id="12-insert-external-service" md-src-pos="11742..11773">1.2 Insert External Service</h3>
+   <p md-src-pos="11774..11907"><span md-src-pos="11774..11795">Add External Resource</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_createExtServ.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="11796..11866" data-original-src="images/ScanApp_createExtServ.png"> <span md-src-pos="11867..11881">Select Service</span> <img src="http://localhost:63342/markdownPreview/882945133/img_24.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img24png" __idea-generated="true" md-src-pos="11882..11907" data-original-src="img_24.png"></p>
+   <h3 id="13-insert-ui-page" md-src-pos="11908..11930">1.3 Insert UI Page</h3>
+   <p md-src-pos="11931..12324"><span md-src-pos="11931..11940">Create UI</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_createUI.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="11941..12006" data-original-src="images/ScanApp_createUI.png"> <span md-src-pos="12007..12025">Use Basic Template</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_basic.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="12026..12088" data-original-src="images/ScanApp_basic.png"> <span md-src-pos="12089..12105">Create Scan View</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_nameView.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="12106..12171" data-original-src="images/ScanApp_nameView.png"> <span md-src-pos="12172..12203">Configure the Project Attribute</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_projectAttribute.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="12204..12277" data-original-src="images/ScanApp_projectAttribute.png"> <span md-src-pos="12278..12298">Deploy Configuration</span> <img src="http://localhost:63342/markdownPreview/882945133/img_26.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img26png" __idea-generated="true" md-src-pos="12299..12324" data-original-src="img_26.png"></p>
+   <h3 id="13-open-joule-chat" md-src-pos="12326..12349">1.3 Open Joule Chat</h3>
+   <p md-src-pos="12350..12375"><img src="http://localhost:63342/markdownPreview/882945133/img_29.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img29png" __idea-generated="true" md-src-pos="12350..12375" data-original-src="img_29.png"></p>
+   <h3 id="14-add-new-page-for-dn-details" md-src-pos="12376..12411">1.4 Add new page for DN Details</h3>
+   <pre class="code-fence" md-src-pos="12413..12670"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNS1jcmVhdGUtcGFnZSBDcmVhdGUgbmV3IHBhZ2UgY2FsbGVkIEROIERldGFpbCB3aXRoIGNvbnRyb2xsZXIgYW5kIHJvdXRpbmcuIApDcmVhdGUgVGV4dCBmaWVsZCBmb3IgRGV2bGllcnkgRG9jdW1lbnQsIERlbGl2ZXJ5IERhdGUsIHNoaXAtdG8sIGFuZCBhIHRhYmxlIG9mIEROJ3MgaXRlbSB3aXRoIGl0ZW0gYW5kIG1hdGVyaWFsIGNvbHVtbi4gCkFkZCBhIGJ1dHRvbiBpbiBzY2FuUGFnZSB0byBuYXZpZ2F0ZSB0byBETiBwYWdl">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="12413..12670"><span md-src-pos="12413..12417"></span><span md-src-pos="12417..12497">/ui5-create-page Create new page called DN Detail with controller and routing. 
+</span><span md-src-pos="12497..12619">Create Text field for Devliery Document, Delivery Date, ship-to, and a table of DN's item with item and material column. 
+</span><span md-src-pos="12619..12667">Add a button in scanPage to navigate to DN page
+</span><span md-src-pos="12667..12670"></span></code></pre>
+   <h3 id="15-add-field-table-button-for-scanpage" md-src-pos="12672..12717">1.5 Add field, table, button for scanPage</h3>
+   <pre class="code-fence" md-src-pos="12718..13389"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBBZGQgYSBmaWVsZCBjYWxsZWQgcGlja2luZyBudW1iZXIgaW4gc2NhblBhZ2UsIGFuZCBhZGQgYSBidXR0b24gY2FsbGVkIHNlYXJjaCBuZXh0IHRvIGl0LiAKSW4gb25TZWFyY2ggZnVuY3Rpb24sVXNlIEFqYXggQ2FsbCBodHRwczovL3BpY2tNb2NrLWZhbnRhc3RpYy1wbGF0eXB1cy1zai5jZmFwcHMudXMxMC0wMDIuaGFuYS5vbmRlbWFuZC5jb20vcGlja3MvPHBpY2tfbnVtYmVyPiAgd2l0aCBnZXQgbWV0aG9kLCBBc3NpZ24gdGhlIHJlc3VsdCB0byBqc29uIG1vZGVsIGN1clBpY2suIApUaGUgZGF0YSBtb2RlbCBjdXJQaWNrIGlzIGxpa2UgdGhpcyBmb3JtYXQ6IHsgInBpY2tOdW1iZXIiOiIyMDAwMTAwMDAyIiwgInBhbGxldExpc3QiOlsgeyJwYWxsZXRJRCI6IjAwMDAwNTAwMDQifSBdLCAiRE5MaXN0IjpbIHsiRE5OdW1iZXIiOiIwMDgwMDA1MjIzIn0gXSB9IApBZGQgYSB0YWJsZSBjYWxsZWQgUGFsbGV0IExpc3QgYmluZGluZyB3aXRoIHBhbGxldExpc3QgaW4gY3VyUGljayBtb2RlbCwgc2hvd2luZyB0aGUgcGFsbGV0SUQgZm9yIGVhY2ggcm93CQpBZGQgYW5vdGhlciB0YWJsZSBjYWxsZWQgT3V0Ym91bmQgRGVsaXZlcnkgYmluZGluZyB3aXRoIEROTGlzdCBpbiBjdXJQaWNrIG1vZGVsLCBzaG93aW5nIHRoZSBETk51bWJlciBpbiBETkxpc3Q=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="12718..13389"><span md-src-pos="12718..12722"></span><span md-src-pos="12722..12818">/ui5 Add a field called picking number in scanPage, and add a button called search next to it. 
+</span><span md-src-pos="12818..13012">In onSearch function,Use Ajax Call https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks/&lt;pick_number&gt;  with get method, Assign the result to json model curPick. 
+</span><span md-src-pos="13012..13251">The data model curPick is like this format: { "pickNumber":"2000100002", "palletList":[ {"palletID":"0000050004"} ], "DNList":[ {"DNNumber":"0080005223"} ] } 
+</span><span md-src-pos="13251..13359">Add a table called Pallet List binding with palletList in curPick model, showing the palletID for each row	
+</span><span md-src-pos="13359..13471">Add another table called Outbound Delivery binding with DNList in curPick model, showing the DNNumber in DNList
+</span><span md-src-pos="13471..13472">
+</span><span md-src-pos="13386..13389"></span></code></pre>
+   <h3 id="16-add-navigation-to-detail-page" md-src-pos="13391..13428">1.6 Add navigation to Detail Page</h3>
+   <pre class="code-fence" md-src-pos="13429..13658"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBBZGQgdGhlIG9uTmF2Um93VG9EZXRhaWwgZnVuY3Rpb24gaW4gc2NhblBhZ2UgY29udHJvbGxlciwgYW5kIGJpbmQgaXQgdG8gdGhlIHJvdyBpbiBETkxpc3RUYWJsZS4gCm9uTmF2Um93VG9EZXRhaWwgd2lsbCByb3V0ZSB0byBETkRldGFpbCBQYWdlIHdpdGggcGFyYW1ldGVyIEROTnVtYmVyLiAKRG8gbm90IGZvcmdldCB0byB1cGRhdGUgcm91dGUgaW4gbWFuaWZlc3QuanNvbg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="13429..13658"><span md-src-pos="13429..13433"></span><span md-src-pos="13433..13536">/ui5 Add the onNavRowToDetail function in scanPage controller, and bind it to the row in DNListTable. 
+</span><span md-src-pos="13536..13607">onNavRowToDetail will route to DNDetail Page with parameter DNNumber. 
+</span><span md-src-pos="13607..13654">Do not forget to update route in manifest.json
+</span><span md-src-pos="13654..13655">
+</span><span md-src-pos="13655..13658"></span></code></pre>
+   <h3 id="17-add-odata-model-binding-in-detail-page" md-src-pos="13660..13706">1.7 Add Odata Model binding in Detail Page</h3>
+   <pre class="code-fence" md-src-pos="13707..14014"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBJbiBETkRldGFpbCBQYWdlLCBzZXQgcGFnZSB0aXRsZSB0byB0aGUgRE5OdW1iZXIgZnJvbSBwYXJhbWV0ZXIgaW4gb25pbml0IGZ1bmN0aW9uLiAKYmluZCB0aGUgdmlldyB0byB0aGUgZW50aXR5IEFfT3V0YkRlbGl2ZXJ5SGVhZGVyIHdpdGgga2V5IEROTnVtYmVyClRoZW4sIGNoZWNrIG1ldGFkYXRhLnhtbCAgYW5kIG1hbmlmZXN0Lmpzb24gdG8gYmluZCBjb3JyZXNwb25kaW5nICBBX091dGJEZWxpdmVyeUhlYWRlJ3MgcHJvcGVydGllcyB0byB0aGUgZmllbGRzIGFuZCB0YWJsZSBvbiB0aGUgRGV0YWlsIFBhZ2U=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="13707..14014"><span md-src-pos="13707..13711"></span><span md-src-pos="13711..13801">/ui5 In DNDetail Page, set page title to the DNNumber from parameter in oninit function. 
+</span><span md-src-pos="13801..13868">bind the view to the entity A_OutbDeliveryHeader with key DNNumber
+</span><span md-src-pos="13868..14011">Then, check metadata.xml  and manifest.json to bind corresponding  A_OutbDeliveryHeade's properties to the fields and table on the Detail Page
+</span><span md-src-pos="14011..14014"></span></code></pre>
+   <pre class="code-fence" md-src-pos="14015..14097"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBJbiBETkRldGFpbCBQYWdlLCB1c2Ugc2ltcGxlZm9ybSB0byBtYW5hZ2UgdGhlIGxheW91dCBvZiAzIGRhdGEgZmllbGQ=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="14015..14097"><span md-src-pos="14015..14019"></span><span md-src-pos="14019..14094">/ui5 In DNDetail Page, use simpleform to manage the layout of 3 data field
+</span><span md-src-pos="14094..14097"></span></code></pre>
+   <h3 id="18-add-scan-button-for-picking" md-src-pos="14098..14133">1.8 Add Scan button for Picking</h3>
+   <pre class="code-fence" md-src-pos="14134..14366"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBpbiBzY2FuUGFnZSwgYWRkIGEgc2NhbiBidXR0b24gYmV0d2VlbiBwaWNraW5nIG51bWJlciBmaWVsZCBhbmQgc2VhcmNoCnVzZSBCYXJjb2RlU2Nhbm5lciBpbiBvbiBzY2FuIHRvIHRyaWdnZXIgY2FtZXJhIHNjYW4gYmFyY29kZSwgYW5kIHdyaXRlIHRoZSBkZWNvZGVkIHZhbHVlIHRvIGZpZWxkIHBpY2tpbmdudW1iZXIsIGFuZCB0cmlnZ2VyIG9uU2VhcmNoIGF1dG9tYXRpY2FsbHk=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="14134..14366"><span md-src-pos="14134..14138"></span><span md-src-pos="14138..14214">/ui5 in scanPage, add a scan button between picking number field and search
+</span><span md-src-pos="14214..14363">use BarcodeScanner in on scan to trigger camera scan barcode, and write the decoded value to field pickingnumber, and trigger onSearch automatically
+</span><span md-src-pos="14363..14366"></span></code></pre>
+   <h4 id="btw-for-testing-barcode-generating-httpsbarcodetec-itcomen" md-src-pos="14368..14439">BTW, For Testing Barcode Generating: <a href="https://barcode.tec-it.com/en" md-src-pos="14410..14439">https://barcode.tec-it.com/en</a></h4>
+   <h3 id="19-add-scan-button-for-pallet" md-src-pos="14441..14475">1.9 Add Scan button for Pallet</h3>
+   <pre class="code-fence" md-src-pos="14476..14879"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBhZGQgYSBzdGF0dXMgZmllbGQgKGRlZmF1bHQgdmFsdWUgaXMgcGVuZGluZykgZm9yIGVhY2ggcGFsbGV0SUQgaW4gdGhlIGN1clBpY2sgZGF0YSBtb2RlbCBpbiBvblNlYXJjaCBGdW5jdGlvbgpBZGQgYnV0dG9uIHNjYW4gUGFsbGV0IGluIHRoZSBoZWFkZXIgb2YgcGFsbGV0TGlzdFRhYmxlClVzZSBCYXJjb2RlU2Nhbm5lciBpbiBvblNjYW5QYWxsZXRQcmVzcyB0byB0cmlnZ2VyIGNhbWVyYSBzY2FuIGJhcmNvZGUsIGlmIHNjYW5uZWQgcGFsbGV0SUQgaW4gcGFsbGV0TGlzdCwgY2hhbmdlIHRoZSBwYWxsZXQncyBzdGF0dXMgdG8gcmVsZWFzZWQgaW4gZGF0YSBtb2RlbCBjdXJQaWNrLCBvdGhlcndpc2UsIHBvcCBlcnJvciAiU2Nhbm5lZCBQYWxsZXQgbm90IGluIHRoZSBsaXN0ISI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="14476..14879"><span md-src-pos="14476..14480"></span><span md-src-pos="14480..14596">/ui5 add a status field (default value is pending) for each palletID in the curPick data model in onSearch Function
+</span><span md-src-pos="14596..14652">Add button scan Pallet in the header of palletListTable
+</span><span md-src-pos="14652..14886">Use BarcodeScanner in onScanPalletPress to trigger camera scan barcode, if scanned palletID in palletList, change the pallet's status to released in data model curPick, otherwise, pop error "Scanned Pallet not in the list!"
+</span><span md-src-pos="14876..14879"></span></code></pre>
+   <h3 id="110-add-pgi-button-and-pgi-service-connecting-s4" md-src-pos="14881..14934">1.10 Add PGI button and PGI service connecting S4</h3>
+   <pre class="code-fence" md-src-pos="14935..15329"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBhZGQgYnV0dG9uIFBHSSBBbGwgRE4gaW4gdGhlIGhlYWRlciBvZiBvdXRib3VuZERlbGl2ZXJ5VGFibGUJCkFkZCBmdW5jdGlvbiBvblBHSUFsbEROIHRvIGhhbmRsZSB0aGUgYnV0dG9uIGxvZ2ljLCB0aGlzIHNob3VsZCB0cmlnZ2VyIHRoZSBmdW5jdGlvbiBQb3N0R29vZHNJc3N1ZSB3aXRoIHBhcmFtZXRlciBETk51bWJlciBmb3IgYWxsIHRoZSBETiBpbiBETkxpc3QsIHBsZWFzZSBjaGVjayBtZXRhZGF0YS54bWwgZm9yIGZ1bmN0aW9uIGluZm8KRG9uJ3QgZm9yZ2V0IHRvIGdldCBjc3JmIHRva2VuIGFuZCBldGFnIGJlZm9yZSBkbyBjYWxsIHBnaQoKL3VpNSBpbiBvblBHSUFsbEROLCBnb3QgNDI4IGVycm9yLCBwbGVhc2UgZ2V0IGV0YWcgYmVmb3JlIGRvIHBnaQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="14935..15329"><span md-src-pos="14935..14939"></span><span md-src-pos="14939..15006">/ui5 add button PGI All DN in the header of outboundDeliveryTable	
+</span><span md-src-pos="15006..15200">Add function onPGIAllDN to handle the button logic, this should trigger the function PostGoodsIssue with parameter DNNumber for all the DN in DNList, please check metadata.xml for function info
+</span><span md-src-pos="15200..15259">Don't forget to get csrf token and etag before do call pgi
+</span><span md-src-pos="15259..15260">
+</span><span md-src-pos="15260..15325">/ui5 in onPGIAllDN, got 428 error, please get etag before do pgi
+</span><span md-src-pos="15325..15326">
+</span><span md-src-pos="15326..15329"></span></code></pre>
+   <h3 id="111-some-extra-logic" md-src-pos="15331..15356">1.11 Some extra logic</h3>
+   <pre class="code-fence" md-src-pos="15357..15813"><div class="code-fence-highlighter-copy-button" data-fence-content="L3VpNSBmb3Igc2NhblBhZ2UgY3JlYXRlIHN0YXR1cyBtb2RlbCwgYW5kIGFkZCBhIFBHSUFsbEZsYWcgaW4gTW9kZWwsCmJ5IGRlZmF1bHQgUEdJQWxsRmxhZyBzaG91bGQgYmUgZmFsc2UsIGFuZCBzd2l0Y2ggdG8gdHJ1ZSBhZnRlciBhbGwgdGhlIHBhbGxldCByZWxlYXNlZAoKcGdpQWxsRE4gYnV0dG9uIHNob3VsZCBiZSBlbmFibGVkIGJhc2VkIG9uIHRoaXMgUEdJQWxsRmxhZwpzZXQgcGdpIGFsbCBidXR0b24gZGlzYWJsZWQgd2hpbGUgd2FpdGluZyBmb3IgdGhlIGJhY2tlbmQgcmVzcG9uc2UKCi91aTUgYWRkIGEgc2NhblBhbGxldEZsYWcgdG8gc3RhdHVzIG1vZGVsLCBieSBkZWZhdWx0IHNldCBhcyBmYWxzZSwgaXQgd2lsbCBiZSBzZXQgYXMgdHJ1ZSBhZnRlciBzdWNjZXNzZnVsbHkgb25TZWFyY2gKc2NhblBhbGxldCBzaG91bGQgYmUgZW5hYmxlZCB3aXRoIHRoaXMgZmxhZw==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="15357..15813"><span md-src-pos="15357..15361"></span><span md-src-pos="15361..15431">/ui5 for scanPage create status model, and add a PGIAllFlag in Model,
+</span><span md-src-pos="15431..15519">by default PGIAllFlag should be false, and switch to true after all the pallet released
+</span><span md-src-pos="15519..15520">
+</span><span md-src-pos="15520..15579">pgiAllDN button should be enabled based on this PGIAllFlag
+</span><span md-src-pos="15579..15646">set pgi all button disabled while waiting for the backend response
+</span><span md-src-pos="15646..15647">
+</span><span md-src-pos="15647..15766">/ui5 add a scanPalletFlag to status model, by default set as false, it will be set as true after successfully onSearch
+</span><span md-src-pos="15766..15810">scanPallet should be enabled with this flag
+</span><span md-src-pos="15810..15813"></span></code></pre>
+   <h3 id="112-build-and-deploy" md-src-pos="15814..15839">1.12 Build and Deploy</h3>
+   <p md-src-pos="15840..15891"><img src="http://localhost:63342/markdownPreview/882945133/img_27.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img27png" __idea-generated="true" md-src-pos="15840..15865" data-original-src="img_27.png"> <img src="http://localhost:63342/markdownPreview/882945133/img_28.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img28png" __idea-generated="true" md-src-pos="15866..15891" data-original-src="img_28.png"></p>
+   <h4 id="run-command-in-terminal-or-just-use-task-center" md-src-pos="15893..15948">run command in terminal (or just use task center):</h4>
+   <pre class="code-fence" md-src-pos="15950..15991"><div class="code-fence-highlighter-copy-button" data-fence-content="bnBtIHJ1biBidWlsZDptdGEKCm5wbSBydW4gZGVwbG95">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="15950..15991"><span md-src-pos="15950..15954"></span><span md-src-pos="15954..15972">npm run build:mta
+</span><span md-src-pos="15972..15973">
+</span><span md-src-pos="15973..15988">npm run deploy
+</span><span md-src-pos="15988..15991"></span></code></pre>
+   <h2 id="scene-2---create-outbound-delivery-list-page" md-src-pos="15992..16039">Scene 2 - Create Outbound Delivery List Page</h2>
+   <h3 id="21-create-project" md-src-pos="16041..16063">2.1 Create Project</h3>
+   <h3 id="22-import-external-resource" md-src-pos="16065..16097">2.2 Import External Resource</h3>
+   <p md-src-pos="16098..16231"><span md-src-pos="16098..16119">Add External Resource</span> <img src="http://localhost:63342/markdownPreview/882945133/images/ScanApp_createExtServ.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="configure additional properties" __idea-generated="true" md-src-pos="16120..16190" data-original-src="images/ScanApp_createExtServ.png"> <span md-src-pos="16191..16205">Select Service</span> <img src="http://localhost:63342/markdownPreview/882945133/img_25.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img25png" __idea-generated="true" md-src-pos="16206..16231" data-original-src="img_25.png"></p>
+   <h3 id="23-open-guided-development" md-src-pos="16232..16263">2.3 Open Guided Development</h3>
+   <p md-src-pos="16264..16289"><img src="http://localhost:63342/markdownPreview/882945133/img_14.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img14png" __idea-generated="true" md-src-pos="16264..16289" data-original-src="img_14.png"></p>
+   <h3 id="24-add-column-to-list" md-src-pos="16290..16316">2.4 Add Column to List</h3>
+   <p md-src-pos="16317..16342"><img src="http://localhost:63342/markdownPreview/882945133/img_15.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img15png" __idea-generated="true" md-src-pos="16317..16342" data-original-src="img_15.png"></p>
+   <h3 id="25-add-filter-for-list" md-src-pos="16343..16370">2.5 Add Filter for List</h3>
+   <p md-src-pos="16371..16396"><img src="http://localhost:63342/markdownPreview/882945133/img_16.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img16png" __idea-generated="true" md-src-pos="16371..16396" data-original-src="img_16.png"></p>
+   <h3 id="26-configure-auto-load-of-table" md-src-pos="16397..16433">2.6 Configure Auto Load of Table</h3>
+   <p md-src-pos="16434..16459"><img src="http://localhost:63342/markdownPreview/882945133/img_17.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img17png" __idea-generated="true" md-src-pos="16434..16459" data-original-src="img_17.png"></p>
+   <h3 id="27-add-title-to-object-page" md-src-pos="16460..16492">2.7 Add Title to Object Page</h3>
+   <p md-src-pos="16493..16518"><img src="http://localhost:63342/markdownPreview/882945133/img_18.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img18png" __idea-generated="true" md-src-pos="16493..16518" data-original-src="img_18.png"></p>
+   <h3 id="28-add-header-facet-to-object-page" md-src-pos="16519..16558">2.8 Add Header Facet to Object Page</h3>
+   <p md-src-pos="16559..16584"><img src="http://localhost:63342/markdownPreview/882945133/img_20.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img20png" __idea-generated="true" md-src-pos="16559..16584" data-original-src="img_20.png"></p>
+   <h3 id="29-add-field-group-section" md-src-pos="16585..16616">2.9 Add Field Group Section</h3>
+   <p md-src-pos="16617..16642"><img src="http://localhost:63342/markdownPreview/882945133/img_19.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img19png" __idea-generated="true" md-src-pos="16617..16642" data-original-src="img_19.png"></p>
+   <h3 id="210-add-list-section" md-src-pos="16643..16668">2.10 Add List Section</h3>
+   <p md-src-pos="16669..16720"><img src="http://localhost:63342/markdownPreview/882945133/img_21.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img21png" __idea-generated="true" md-src-pos="16669..16694" data-original-src="img_21.png"> <img src="http://localhost:63342/markdownPreview/882945133/img_22.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img22png" __idea-generated="true" md-src-pos="16695..16720" data-original-src="img_22.png"></p>
+   <h3 id="211-add-pick-all-action-button" md-src-pos="16721..16756">2.11 Add Pick All Action Button</h3>
+   <p md-src-pos="16757..16782"><img src="http://localhost:63342/markdownPreview/882945133/img_23.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img23png" __idea-generated="true" md-src-pos="16757..16782" data-original-src="img_23.png"></p>
+   <h3 id="212-build-and-deploy" md-src-pos="16783..16808">2.12 Build and Deploy</h3>
+   <h4 id="run-command-in-terminal-also-ok-to-use-task-center" md-src-pos="16809..16867">Run command in terminal: (also ok to use task center)</h4>
+   <pre class="code-fence" md-src-pos="16868..16909"><div class="code-fence-highlighter-copy-button" data-fence-content="bnBtIHJ1biBidWlsZDptdGEKCm5wbSBydW4gZGVwbG95">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="16868..16909"><span md-src-pos="16868..16872"></span><span md-src-pos="16872..16890">npm run build:mta
+</span><span md-src-pos="16890..16891">
+</span><span md-src-pos="16891..16906">npm run deploy
+</span><span md-src-pos="16906..16909"></span></code></pre>
+   <h2 id="scene-3---create-full-stack-project" md-src-pos="16910..16948">Scene 3 - Create Full Stack Project</h2>
+   <h3 id="31-create-project" md-src-pos="16950..16972">3.1 Create Project</h3>
+   <h3 id="32-open-project-accelerator" md-src-pos="16974..17006">3.2 Open Project Accelerator</h3>
+   <p md-src-pos="17007..17085"><span md-src-pos="17007..17011">Type</span> <code md-src-pos="17012..17037">&gt;project acclerator</code> <span md-src-pos="17038..17061">in the navigation field</span> <img src="http://localhost:63342/markdownPreview/882945133/img_2.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img2png" __idea-generated="true" md-src-pos="17062..17085" data-original-src="img_2.png"></p>
+   <p md-src-pos="17087..17150"><span md-src-pos="17087..17119">Design the prompt of the project</span>'<span md-src-pos="17120..17145">s data model and ui page,</span> <span md-src-pos="17146..17150">send</span></p>
+   <pre class="code-fence" md-src-pos="17151..17911"><div class="code-fence-highlighter-copy-button" data-fence-content="Y3JlYXRlIGFuIFNBUCBGaW9yaSBhcHBsaWNhdGlvbiB0aGF0IHNob3dzIHRoZSBsaXN0IG9mIG1haW4gZGVsaXZlcnkgcGxhbi4gbmF2aWdhdGUgdG8gdGhlIG1haW4gZGVsaXZlcnkgcGxhbiBkZXRhaWwgcGFnZSwgYW5kIHNob3cgdGhlIHN1YiBkZWxpdmVyeSBwbGFuIGxpc3QgaW4gdGhpcyBwYWdlLiB0aGVuIG5hdmlnYXRlIHRvIHN1YiBkZWxpdmVyeSBwbGFuIHBhZ2UsIGFuZCBzaG93IHRoZSBkZWxpdmVyeSBpdGVtIGxpc3QgaW4gdGhpcyBwYWdlLgpFYWNoIG1haW4gZGVsaXZlcnkgcGxhbiBoYXMgZm9sbG93aW5nIGF0dHJpYnV0ZXM6CjEgTWFpbiBQbGFuIElEIChtYW5kYXRvcnkpCjIgRGVsaXZlcnkgRGF0ZQozIFBpY2tpbmcgTnVtYmVyCjQgQ3JlYXRlIEJ5CgpFYWNoIHN1YiBkZWxpdmVyeSBwbGFuIGhhcyBmb2xsb3dpbmcgYXR0cnVidXRlczoKMSBTdWIgUGxhbiBJRCAobWFuZGF0b3J5KQoyIG91dGJvdW5kIGRlbGl2ZXJ5IElECgpFYWNoIGRlbGl2ZXJ5IGl0ZW0gaGFzIGZvbGxvd2luZyBhdHRyaWJ1dGVzOgoxIFNhbGVzIE9yZGVyIChtYW5kYXRvcnkpCjIgaXRlbSBpZCAobWFuZGF0b3J5KQozIHBsYW5uZWQgcXVhbnRpdHkgKG1hbmRhdG9yeSkKNCB1bml0IChtYW5kYXRvcnkpCgpFYWNoIG1haW4gZGVsaXZlcnkgcGxhbiBjb21wb3NpdGUgd2l0aCBtdWx0aXBsZSBzdWIgZGVsaXZlcnkgcGxhbgpFYWNoIHN1YiBkZWxpdmVyeSBwbGFuIGNvbXBvc2l0ZSB3aXRoIG11bHRpcGxlIGRlbGl2ZXJ5IGl0ZW0=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="17151..17911"><span md-src-pos="17151..17155"></span><span md-src-pos="17155..17415">create an SAP Fiori application that shows the list of main delivery plan. navigate to the main delivery plan detail page, and show the sub delivery plan list in this page. then navigate to sub delivery plan page, and show the delivery item list in this page.
+</span><span md-src-pos="17415..17465">Each main delivery plan has following attributes:
+</span><span md-src-pos="17465..17492">1 Main Plan ID (mandatory)
+</span><span md-src-pos="17492..17508">2 Delivery Date
+</span><span md-src-pos="17508..17525">3 Picking Number
+</span><span md-src-pos="17525..17537">4 Create By
+</span><span md-src-pos="17537..17538">
+</span><span md-src-pos="17538..17587">Each sub delivery plan has following attrubutes:
+</span><span md-src-pos="17587..17613">1 Sub Plan ID (mandatory)
+</span><span md-src-pos="17613..17636">2 outbound delivery ID
+</span><span md-src-pos="17636..17637">
+</span><span md-src-pos="17637..17682">Each delivery item has following attributes:
+</span><span md-src-pos="17682..17708">1 Sales Order (mandatory)
+</span><span md-src-pos="17708..17730">2 item id (mandatory)
+</span><span md-src-pos="17730..17761">3 planned quantity (mandatory)
+</span><span md-src-pos="17761..17780">4 unit (mandatory)
+</span><span md-src-pos="17780..17781">
+</span><span md-src-pos="17781..17847">Each main delivery plan composite with multiple sub delivery plan
+</span><span md-src-pos="17847..17908">Each sub delivery plan composite with multiple delivery item
+</span><span md-src-pos="17908..17911"></span></code></pre>
+   <p md-src-pos="17912..18055"><span md-src-pos="17912..17932">Preview the Project,</span> <span md-src-pos="17933..17969">if all the page generated correctly,</span> <span md-src-pos="17970..17983">press accept.</span> <img src="http://localhost:63342/markdownPreview/882945133/img_4.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img4png" __idea-generated="true" md-src-pos="17984..18007" data-original-src="img_4.png"> <img src="http://localhost:63342/markdownPreview/882945133/img_5.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img5png" __idea-generated="true" md-src-pos="18008..18031" data-original-src="img_5.png"> <img src="http://localhost:63342/markdownPreview/882945133/img_6.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img6png" __idea-generated="true" md-src-pos="18032..18055" data-original-src="img_6.png"></p>
+   <h3 id="33-import-external-resource" md-src-pos="18057..18089">3.3 Import External Resource</h3>
+   <p md-src-pos="18090..18196"><span md-src-pos="18090..18127">Use Storyboard Add External Resource,</span> <span md-src-pos="18128..18172">choose the destination we configured before.</span> <img src="http://localhost:63342/markdownPreview/882945133/img_8.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img8png" __idea-generated="true" md-src-pos="18173..18196" data-original-src="img_8.png"></p>
+   <h3 id="34-add-custom-logic-create-outbound-delivery" md-src-pos="18197..18246">3.4 Add Custom Logic Create Outbound Delivery</h3>
+   <pre class="code-fence" md-src-pos="18247..18835"><div class="code-fence-highlighter-copy-button" data-fence-content="L2NhcC1hcHAtbG9naWMgI3Nydi9jb2RlL291dGJvdW5kZGVsaXZlcmllcy1sb2dpYy5qcyAgCmxvb3AgYWxsIHRoZSBzdWIgZGVsaXZlcnkgcGxhbiB1bmRlciBjdXJyZW50IG1haW4gZGVsaXZlcnkgcGxhbiwgYW5kIGZvciBlYWNoIHN1YiBkZWxpdmVyeSBwbGFuIGNhbGwgZXh0ZXJuYWwgc2VydmljZSBjcmVhdGUgb3V0Ym91bmREZWxpdmVyeUhlYWRlciAsCmZvciB0aGUgaW5wdXQgdG8gY3JlYXRlIG91dGJvdW5kRGVsaXZlcnlIZWFkZXIsIGxvb3AgYWxsIHRoZSBkZWxpdmVyeSBpdGVtIGJlbG9uZ2luZyB0byB0aGUgc3ViIGRlbGl2ZXJ5IHBsYW4KZWFjaCB0b19EZWxpdmVyeURvY3VtZW50SXRlbSBjb250YWlucyByZWZlcmVuY2VTRERvY3VtZW50IC0gc2FsZXMgb3JkZXIsIGFuZCBSZWZlcmVuY2VTRERvY3VtZW50SXRlbSAtIGl0ZW1pZCwgYWN0dWFsZGVsaXZlcnlxdWFudGl0eSAtIHF1YW50aXR5LCBkZWx2aWVyeXF1YW50aXR5dW5pdCAtIHVuaXQuIApBZnRlciBjcmVhdGlvbiB1cGRhdGUgdGhlIG91dGJvdW5kRGVsaXZlcnlJRCB3aXRoIHRoZSBnZW5lcmF0ZSBvdXRib3VuZCBkZWxpdmVyeSBkb2N1bWVudA==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18247..18835"><span md-src-pos="18247..18251"></span><span md-src-pos="18251..18306">/cap-app-logic #srv/code/outbounddeliveries-logic.js  
+</span><span md-src-pos="18306..18456">loop all the sub delivery plan under current main delivery plan, and for each sub delivery plan call external service create outboundDeliveryHeader ,
+</span><span md-src-pos="18456..18566">for the input to create outboundDeliveryHeader, loop all the delivery item belonging to the sub delivery plan
+</span><span md-src-pos="18566..18742">each to_DeliveryDocumentItem contains referenceSDDocument - sales order, and ReferenceSDDocumentItem - itemid, actualdeliveryquantity - quantity, delvieryquantityunit - unit. 
+</span><span md-src-pos="18742..18832">After creation update the outboundDeliveryID with the generate outbound delivery document
+</span><span md-src-pos="18832..18835"></span></code></pre>
+   <p md-src-pos="18836..18950"><span md-src-pos="18836..18858">While pressing Create,</span> <span md-src-pos="18859..18926">Update Oubtound Delivery ID with the create outbound delivery in S4</span> <img src="http://localhost:63342/markdownPreview/882945133/img_3.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img3png" __idea-generated="true" md-src-pos="18927..18950" data-original-src="img_3.png"></p>
+   <h3 id="35-add-custom-logic-create-picking" md-src-pos="18951..18990">3.5 Add Custom Logic Create Picking</h3>
+   <pre class="code-fence" md-src-pos="18991..19421"><div class="code-fence-highlighter-copy-button" data-fence-content="L2NhcC1hcHAtbG9naWMgI3Nydi9jb2RlL291dGJvdW5kZGVsaXZlcmllcy1sb2dpYy5qcyAKYWZ0ZXIgdXBkYXRpbmcgdGhlIG91dGJvdW5kIGRlbGl2ZXJ5IG51bWJlciwgY2FsbCB0aGUgaHR0cHM6Ly9waWNrTW9jay1mYW50YXN0aWMtcGxhdHlwdXMtc2ouY2ZhcHBzLnVzMTAtMDAyLmhhbmEub25kZW1hbmQuY29tL3BpY2tzIAp3aXRoIHBvc3RpbmcgYm9keSBsaWtlIHsiRE5MaXN0IjogW119IHRoZSBETkxpc3Qgd291bGQgY29udGFpbiBhbGwgdGhlIGNyZWF0ZWQgb3V0Ym91bmREZWxpdmVyeUlkLCB0aGlzIGludGVyZmFjZSB3aWxsIHJldHVybiB7ICAgICJwaWNrTnVtYmVyIjogIiJ9LCAKbGV0J3MgdXBkYXRlIHRoaXMgcmV0dXJuZWQgcGlja2luZ051bWJlciB0byB0aGUgZmllbGQgcGlja2luZ051bWJlciBvZiBkZWxpdmVyeVBsYW4=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="" src="http://localhost:63342/markdownPreview/882945133/?_ijt=ovso135q4g5jhhe569e4l6vin8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18991..19421"><span md-src-pos="18991..18995"></span><span md-src-pos="18995..19049">/cap-app-logic #srv/code/outbounddeliveries-logic.js 
+</span><span md-src-pos="19049..19183">after updating the outbound delivery number, call the https://pickMock-fantastic-platypus-sj.cfapps.us10-002.hana.ondemand.com/picks 
+</span><span md-src-pos="19183..19364">with posting body like {"DNList": []} the DNList would contain all the created outboundDeliveryId, this interface will return {    "pickNumber": ""}, 
+</span><span md-src-pos="19364..19448">let's update this returned pickingNumber to the field pickingNumber of deliveryPlan
+</span><span md-src-pos="19418..19421"></span></code></pre>
+   <p md-src-pos="19422..19542"><span md-src-pos="19422..19444">While pressing Create,</span> <span md-src-pos="19445..19518">Update Picking Number to this field with the response of mock MES system.</span> <img src="http://localhost:63342/markdownPreview/882945133/img_7.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img7png" __idea-generated="true" md-src-pos="19519..19542" data-original-src="img_7.png"></p>
+   <h3 id="36-deploy" md-src-pos="19544..19558">3.6 Deploy</h3>
+   <p md-src-pos="19559..19629"><span md-src-pos="19559..19592">Directly Run this in task center,</span> <span md-src-pos="19593..19629">it will help handle build and deploy</span></p>
+   <p md-src-pos="19631..19656"><img src="http://localhost:63342/markdownPreview/882945133/img_13.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img13png" __idea-generated="true" md-src-pos="19631..19656" data-original-src="img_13.png"></p>
+   <p md-src-pos="19658..19737"><span md-src-pos="19658..19711">It will let you input user and password for cf logon,</span> <span md-src-pos="19712..19737">and also target and space</span></p>
+   <h3 id="4-add-apps-to-workzone" md-src-pos="19739..19765">4 Add Apps to Workzone</h3>
+   <p md-src-pos="19766..19986"><span md-src-pos="19766..19798">Content Manager Create Contents,</span> <span md-src-pos="19799..19804">Group</span> <img src="http://localhost:63342/markdownPreview/882945133/img_32.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img32png" __idea-generated="true" md-src-pos="19805..19830" data-original-src="img_32.png"> <span md-src-pos="19831..19854">Add contents into group</span> <img src="http://localhost:63342/markdownPreview/882945133/img_33.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img33png" __idea-generated="true" md-src-pos="19855..19880" data-original-src="img_33.png"> <span md-src-pos="19881..19907">Add contents into everyone</span> <img src="http://localhost:63342/markdownPreview/882945133/img_34.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img34png" __idea-generated="true" md-src-pos="19908..19933" data-original-src="img_34.png"> <span md-src-pos="19934..19948">Create a site,</span> <span md-src-pos="19949..19960">and view it</span> <img src="http://localhost:63342/markdownPreview/882945133/img_35.png?_ijt=ovso135q4g5jhhe569e4l6vin8" alt="img35png" __idea-generated="true" md-src-pos="19961..19986" data-original-src="img_35.png"></p>
+   <h1 id="appendix---related-tutorials" md-src-pos="19987..20017">Appendix - Related Tutorials</h1>
+   <h2 id="abap-cloud-tutorial" md-src-pos="20018..20040">ABAP Cloud Tutorial</h2>
+   <h3 id="httpsgithubcomamritansh-sapsap-build-abap-dev-workshop" md-src-pos="20041..20105"><a href="https://github.com/amritansh-sap/sap-build-abap-dev-workshop" md-src-pos="20045..20105">https://github.com/amritansh-sap/sap-build-abap-dev-workshop</a></h3>
+   <h2 id="sap-build-code_-fiori-application--fiori-element-project" md-src-pos="20106..20166">SAP Build Code_ Fiori Application – Fiori Element Project</h2>
+   <h3 id="httpsdeveloperssapcomgroupfiori-tools-lrophtml" md-src-pos="20167..20225"><a href="https://developers.sap.com/group.fiori-tools-lrop.html" md-src-pos="20171..20225">https://developers.sap.com/group.fiori-tools-lrop.html</a></h3>
+   <h2 id="sap-build-code--ui5-free-style-project" md-src-pos="20226..20268">SAP Build Code – UI5 Free Style Project</h2>
+   <h3 id="httpscommunitysapcomt5technology-blogs-by-sapui5-freestyle-development-in-sap-build-code-with-jouleba-p13897852" md-src-pos="20269..20394"><a href="https://community.sap.com/t5/technology-blogs-by-sap/ui5-freestyle-development-in-sap-build-code-with-joule/ba-p/13897852" md-src-pos="20273..20394">https://community.sap.com/t5/technology-blogs-by-sap/ui5-freestyle-development-in-sap-build-code-with-joule/ba-p/13897852</a></h3>
+   <h2 id="sap-build-code_-full-stack-application--joule-generate-full-stack-project" md-src-pos="20395..20472">SAP Build Code_ Full-Stack Application – Joule Generate Full-stack project</h2>
+   <h3 id="httpscommunitysapcomt5technology-blogs-by-sapgenerative-ai-based-sap-fiori-app-development-with-joule-directly-from-theba-p13654153" md-src-pos="20473..20618"><a href="https://community.sap.com/t5/technology-blogs-by-sap/generative-ai-based-sap-fiori-app-development-with-joule-directly-from-the/ba-p/13654153" md-src-pos="20477..20618">https://community.sap.com/t5/technology-blogs-by-sap/generative-ai-based-sap-fiori-app-development-with-joule-directly-from-the/ba-p/13654153</a></h3>
+   <h2 id="sap-build-code_-full-stack-application--joule-generate-cap--fiori-template" md-src-pos="20619..20698">SAP Build Code_ Full-Stack Application – Joule Generate CAP + Fiori Template</h2>
+   <h3 id="httpsdeveloperssapcomtutorialsbuild-code-complexhtml" md-src-pos="20699..20763"><a href="https://developers.sap.com/tutorials/build-code-complex.html" md-src-pos="20703..20763">https://developers.sap.com/tutorials/build-code-complex.html</a></h3>
+   <h2 id="help-portal-for-project-accelerator" md-src-pos="20764..20802">Help portal for Project Accelerator</h2>
+   <h3 id="httpshelpsapcomdocssap_fiori_tools17d50220bcd848aa854c9c182d65b6996845fedbb38c4da7a54a2c76081f3abbhtml" md-src-pos="20803..20919"><a href="https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html" md-src-pos="20807..20919">https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html</a></h3>
+  </div>
+ </body>
+</html>
