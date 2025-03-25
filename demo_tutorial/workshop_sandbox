@@ -1,0 +1,13 @@
+#Password=<< Existing password/certificate removed on export >>
+#
+#Tue Mar 25 02:33:32 UTC 2025
+Type=HTTP
+HTML5.DynamicDestination=true
+User=SBPA_1
+Authentication=BasicAuthentication
+WebIDEEnabled=true
+ProxyType=Internet
+sap-client=100
+URL=https\://my300181-api.s4hana.ondemand.com
+Name=workshop_sandbox
+WebIDEUsage=odata_abap, dev_abap
