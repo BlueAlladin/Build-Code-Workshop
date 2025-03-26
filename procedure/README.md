@@ -495,9 +495,9 @@ Create a site, and view it
 ### https://github.com/amritansh-sap/sap-build-abap-dev-workshop
 ## SAP Build Code_ Fiori Application – Fiori Element Project
 ### https://developers.sap.com/group.fiori-tools-lrop.html
-## SAP Build Code – UI5 Free Style Project
+## SAP Build Code – UI5 Free Style Project (If 403, copy link and open it in separate window)
 ### https://community.sap.com/t5/technology-blogs-by-sap/ui5-freestyle-development-in-sap-build-code-with-joule/ba-p/13897852
-## SAP Build Code_ Full-Stack Application – Joule Generate Full-stack project
+## SAP Build Code_ Full-Stack Application – Joule Generate Full-stack project (If 403, copy link and open it in separate window)
 ### https://community.sap.com/t5/technology-blogs-by-sap/generative-ai-based-sap-fiori-app-development-with-joule-directly-from-the/ba-p/13654153
 ## SAP Build Code_ Full-Stack Application – Joule Generate CAP + Fiori Template
 ### https://developers.sap.com/tutorials/build-code-complex.html
